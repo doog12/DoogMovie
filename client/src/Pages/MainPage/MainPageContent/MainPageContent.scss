@@ -1,0 +1,11 @@
+.main-page__slider {
+  overflow: hidden auto;
+
+  margin-bottom: 4%;
+
+  &__title {
+    font-weight: 700;
+    font-size: calc(13px + 10 * (100vw / 1690));
+    margin-bottom: 1.5%;
+  }
+}

@@ -1,0 +1,25 @@
+.animes-page {
+
+    &__cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        justify-content: center;
+        align-items: stretch;
+
+        @media screen and (max-width: 730px) {
+            gap: 25px
+        }
+        @media screen and (max-width: 589px) {
+            gap: 20px
+        }
+    }
+
+    &__toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 0 0 10%;
+        margin-bottom: 5%;
+    }
+}

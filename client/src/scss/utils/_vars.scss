@@ -1,0 +1,14 @@
+$fontSize: 10px; // 10px = 1rem
+$mainFont: 'Roboto', sans-serif; //(optional) replace value to set default font
+
+//* Body
+$bodyBgColor: #0F1015;
+$bodyTextColor: #fff;
+
+//* CONTAINER
+$maxWidth: 1720px; //!
+$minWidth: 320px; //(optional)
+$containerPadding: 15px; //
+
+//* Fonts Path
+$fonts-path: unquote($string: "../../assets/fonts");
