@@ -13,7 +13,10 @@ const PORT: string | number = process.env.PORT || 5000
 
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({
+    credentials: true,
+    origin: process.env.CLIENT_URL
+}))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use('/api', authRouter)

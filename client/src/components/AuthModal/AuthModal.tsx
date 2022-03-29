@@ -1,13 +1,63 @@
-import React, { useState } from 'react'
-
+import React, { ChangeEvent, useContext, useState } from 'react'
 import './AuthModal.scss'
+import { Context } from '../../index'
+
+
 const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
+    const {store} = useContext(Context)
 
     const [rightPanelActive, setRightPanelActive] = useState(false)
+
+
+    // ======================= Login =======================
+
+    const [loginData, setLoginData] = useState({
+        email: '',
+        password: ''
+    })
+    const loginChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setLoginData({...loginData, [event.target.name]: event.target.value})
+    }
+    const loginRequest = () => {
+        store.login(loginData.email, loginData.password)
+        setLoginData({
+            email: '',
+            password: ''
+        })
+    }
+
+    // =====================================================
+
+
+    // ======================= Registration =======================
+
+    const [registrationData, setRegistrationData] = useState({
+        name: '',
+        email: '',
+        password: ''
+    })
+    const registrationChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setRegistrationData({...registrationData, [event.target.name]: event.target.value})
+    }
+    const registrationRequest = () => {
+        store.registration(registrationData.name, registrationData.email, registrationData.password)
+        setRegistrationData({
+            name: '',
+            email: '',
+            password: ''
+        })
+    }
+
+    // ============================================================
+
 
     return (
         <div className={`auth-modal ${authModalActive ? 'active' : ''}`}>
             <div className={`auth-modal__content ${rightPanelActive ? 'right-panel-active' : ''}`}>
+
+
+                {/*============= SIGN UP =================*/}
+
                 <div className="auth-modal__content__form-container sign-up-container">
                     <form action="#" onSubmit={(event) => event.preventDefault()}>
                         <h1>Регистрация</h1>
@@ -23,33 +73,44 @@ const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
                             </a>
                         </div>
                         <span>или используйте свой E-mail для регистрации</span>
-                        <input type="text" autoComplete="OFF" placeholder="Имя" required/>
-                        <input type="email" autoComplete="OFF" placeholder="Email" required/>
-                        <input type="password" autoComplete="OFF" placeholder="Пароль" required/>
-                        <button className="auth-modal__content__button">Зарегистрироваться</button>
+
+                        <input type="text" autoComplete="OFF" value={registrationData.name} name="name" placeholder="Имя" onChange={(e) => registrationChangeHandler(e)} required/>
+                        <input type="email" autoComplete="OFF" value={registrationData.email} name="email" placeholder="Email" onChange={(e) => registrationChangeHandler(e)} required/>
+                        <input type="password" autoComplete="OFF" value={registrationData.password} name="password" placeholder="Пароль" onChange={(e) => registrationChangeHandler(e)} required/>
+
+                        <button className="auth-modal__content__button" onClick={() => registrationRequest()}>Зарегистрироваться</button>
+
                     </form>
                 </div>
+
+
+                {/*============= SIGN IN =================*/}
+
                 <div className="auth-modal__content__form-container sign-in-container">
                     <form action="#" onSubmit={(event) => event.preventDefault()}>
                         <h1>Авторизация</h1>
                         <div className="auth-modal__content__form-container__social-container">
                             <a href="#" className="social">
-                                <i className="fab fa-facebook-f"></i>
+                                <i className="fab fa-facebook-f" />
                             </a>
                             <a href="#" className="social">
-                                <i className="fab fa-google-plus-g"></i>
+                                <i className="fab fa-google-plus-g" />
                             </a>
                             <a href="#" className="social">
-                                <i className="fab fa-linkedin-in"></i>
+                                <i className="fab fa-linkedin-in" />
                             </a>
                         </div>
                         <span>или используйте свой аккаунт</span>
-                        <input type="email" autoComplete="OFF" placeholder="Email" required/>
-                        <input type="password" autoComplete="OFF" placeholder="Пароль" required/>
+                        <input type="email" autoComplete="OFF" value={loginData.email} name="email" placeholder="Email" onChange={(e) => loginChangeHandler(e)} required/>
+                        <input type="password" autoComplete="OFF" value={loginData.password} name="password" placeholder="Пароль" onChange={(e) => loginChangeHandler(e)} required/>
                         <a href="#" className="auth-modal__content__forgot-password">Забыли пароль?</a>
-                        <button className="auth-modal__content__button">Вход</button>
+
+                        <button className="auth-modal__content__button" onClick={() => loginRequest()}>Вход</button>
+
                     </form>
                 </div>
+
+
                 <div className="auth-modal__content__overlay-container">
                     <div className="auth-modal__content__overlay">
                         <div className="auth-modal__content__overlay-panel overlay-left">

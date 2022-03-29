@@ -15,10 +15,10 @@ const SeriesPage = ({type} : {type: string}) => {
 
     const [details, setDetails]: any = useState('') // All information from API
 
-    const filmUrl = `https://api.themoviedb.org/3/${type}/${id}?api_key=${TMDB_API}&language=ru-Ru&append_to_response=external_id,videos` // movie and tv url
-    const animeUrl = `https://shikimori.one/api/animes/${id}` // anime url
+    const filmUrl: string = `https://api.themoviedb.org/3/${type}/${id}?api_key=${TMDB_API}&language=ru-Ru&append_to_response=external_id,videos` // movie and tv url
+    const animeUrl: string = `https://shikimori.one/api/animes/${id}` // anime url
 
-    const fetchURL = type === 'anime' ? animeUrl : filmUrl // URL for FETCH
+    const fetchURL: string = type === 'anime' ? animeUrl : filmUrl // URL for FETCH
 
     const getDetails = () => {
         axios
@@ -57,7 +57,7 @@ const SeriesPage = ({type} : {type: string}) => {
     return (
         <div className="series-page">
             <SeriesPageIntro details={details[0]} type={type}/>
-            <SeriesPageContent trailers={details[0] ? details[0].videos : null} type={type} />
+            <SeriesPageContent trailers={details[0] ? details[0].videos : null} type={type} imdb_id={details[0] ? details[0].imdb_id : ''} />
         </div>
     )
 }

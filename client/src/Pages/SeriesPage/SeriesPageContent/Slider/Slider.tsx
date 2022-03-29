@@ -39,13 +39,6 @@ const Slider = ({ trailers, type }: { trailers: any, type: string }) => {
                     ))
                 ) : ('')
             }
-            {/* {
-                trailers.filter((item: any) => item.type === 'Trailer').map((item: any, index: number) => (
-                    <SwiperSlide key={index}>
-                        <Slide data={item} />
-                    </SwiperSlide>
-                ))
-            } */}
         </Swiper>
     )
 }

@@ -67,3 +67,19 @@ export interface TMDBResult {
     // Videos
     videos: any
 }
+
+export interface VideoCDNResult {
+    id: number,
+    title: string,
+    kp_id: string | number,
+    imdb_id: string | number,
+    type: string,
+    add: string,
+    orig_title: string,
+    year: string,
+    translations: string[],
+    quality: string,
+    translation: string,
+    update: string,
+    iframe_src: string
+}
