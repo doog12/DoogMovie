@@ -9,7 +9,7 @@
         height: 100%;
 
         padding: 0 5.21% 0 5.21%;
-        
+
 
         display: flex;
         justify-content: space-between;
@@ -200,11 +200,16 @@
         }
 
         &__login {
+            margin-left: 4rem;
+
+            @media screen and (max-width: 1150px) {
+                margin-left: 2rem;
+            }
+
             &-key {
                 max-width: 100%;
                 max-height: 100%;
 
-                margin-left: 4rem;
                 cursor: pointer;
 
                 opacity: 0.7;
@@ -214,9 +219,7 @@
                     opacity: 1;
                 }
 
-                @media screen and (max-width: 1150px) {
-                    margin-left: 2rem;
-                }
+
                 @media screen and (max-width: 525px) {
                     display: none;
                 }

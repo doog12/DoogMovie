@@ -94,7 +94,7 @@ const Tv = () => {
         },
         {
             value: 'Топ рейтинга', // value
-            sort: () => sortByRaiting() // sorting function
+            sort: () => sortByRating() // sorting function
         },
         {
             value: 'Последнее', // value
@@ -108,7 +108,7 @@ const Tv = () => {
             const sort = tv.sort((a: TVsState, b: TVsState) => a.popularity > b.popularity ? -1 : 1)
             setTv(sort)
         }
-        const sortByRaiting = () => {
+        const sortByRating = () => {
             const sort = tv.sort((a: TVsState, b: TVsState) => a.rating > b.rating ? -1 : 1)
             setTv(sort)
         }

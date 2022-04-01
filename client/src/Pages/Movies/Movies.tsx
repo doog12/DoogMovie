@@ -93,7 +93,7 @@ const Movies = () => {
         },
         {
             value: 'Топ рейтинга', // value
-            sort: () => sortByRaiting() // sorting function
+            sort: () => sortByRating() // sorting function
         },
         {
             value: 'Последнее', // value
@@ -107,7 +107,7 @@ const Movies = () => {
             const sort = movies.sort((a: MoviesState, b: MoviesState) => a.popularity > b.popularity ? -1 : 1)
             setMovies(sort)
         }
-        const sortByRaiting = () => {
+        const sortByRating = () => {
             const sort = movies.sort((a: MoviesState, b: MoviesState) => a.rating > b.rating ? -1 : 1)
             setMovies(sort)
         }

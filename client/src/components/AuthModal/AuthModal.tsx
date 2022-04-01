@@ -1,13 +1,13 @@
 import React, { ChangeEvent, useContext, useState } from 'react'
 import './AuthModal.scss'
 import { Context } from '../../index'
+import { Link } from 'react-router-dom'
 
 
 const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
     const {store} = useContext(Context)
 
     const [rightPanelActive, setRightPanelActive] = useState(false)
-
 
     // ======================= Login =======================
 
@@ -20,10 +20,18 @@ const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
     }
     const loginRequest = () => {
         store.login(loginData.email, loginData.password)
-        setLoginData({
-            email: '',
-            password: ''
-        })
+            .then((response: number | undefined) => {
+                if (response !== 200) {
+                    return console.log('CRASHED!')
+                }
+                setAuthModalActive(false)
+            })
+            .then(() => {
+                setLoginData({
+                    email: '',
+                    password: ''
+                })
+            })
     }
 
     // =====================================================
@@ -41,11 +49,20 @@ const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
     }
     const registrationRequest = () => {
         store.registration(registrationData.name, registrationData.email, registrationData.password)
-        setRegistrationData({
-            name: '',
-            email: '',
-            password: ''
-        })
+            .then((response: number | undefined) => {
+                if (response !== 200) {
+                    return console.log('CRASHED!')
+                }
+                setRightPanelActive(!rightPanelActive)
+            })
+            .then(() => {
+                setRegistrationData({
+                    name: '',
+                    email: '',
+                    password: ''
+                })
+            })
+
     }
 
     // ============================================================
@@ -103,7 +120,7 @@ const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
                         <span>или используйте свой аккаунт</span>
                         <input type="email" autoComplete="OFF" value={loginData.email} name="email" placeholder="Email" onChange={(e) => loginChangeHandler(e)} required/>
                         <input type="password" autoComplete="OFF" value={loginData.password} name="password" placeholder="Пароль" onChange={(e) => loginChangeHandler(e)} required/>
-                        <a href="#" className="auth-modal__content__forgot-password">Забыли пароль?</a>
+                        <Link to="/forgot_password" className="auth-modal__content__forgot-password">Забыли пароль?</Link>
 
                         <button className="auth-modal__content__button" onClick={() => loginRequest()}>Вход</button>
 

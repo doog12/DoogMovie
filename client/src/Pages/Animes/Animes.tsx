@@ -92,7 +92,7 @@ const Animes = () => {
         },
         {
             value: 'Топ рейтинга', // value
-            sort: () => sortByRaiting() // sorting function
+            sort: () => sortByRating() // sorting function
         },
         {
             value: 'Последнее', // value
@@ -106,7 +106,7 @@ const Animes = () => {
 
         //* ============================= SORT FUNCTIONS =============================
 
-        const sortByRaiting = () => {
+        const sortByRating = () => {
             const sort = animes.sort((a: AnimesState, b: AnimesState) => a.rating > b.rating ? -1 : 1)
             setAnimes(sort)
         }

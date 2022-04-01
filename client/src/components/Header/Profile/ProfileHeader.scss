@@ -1,0 +1,64 @@
+.header__utils__profile {
+    position: relative;
+
+    &__dropdown__menu {
+        display: flex;
+        flex-direction: column;
+
+        position: absolute;
+        top: 46px;
+        left: -16px;
+
+        visibility: hidden;
+        opacity: 0;
+
+        border-radius: 6px;
+        min-width: 150px;
+        text-align: center;
+
+        transition-property: opacity, visibility;
+        transition-duration: .3s;
+        transition-delay: .15s;
+
+        &:hover {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        &__item {
+            background: rgba(255, 255, 255, 0.85);
+            color: rgba(0, 0, 0, 0.9);
+            padding: 16px 16px;
+            font-size: 1.4rem;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all .3s;
+
+            &:hover {
+                background: rgba(255, 255, 255, 1);
+            }
+
+            &:first-child {
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+            }
+
+            &:last-child {
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
+            }
+        }
+    }
+
+
+    //&__img:hover &__dropdown__menu {
+    //    display: flex;
+    //}
+}
+
+.header__utils__login:hover + .header__utils__profile__dropdown__menu {
+    visibility: visible;
+    opacity: 1;
+}

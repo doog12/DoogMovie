@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Header.scss'
 import './Burger.scss'
 
@@ -6,14 +6,25 @@ import AuthModal from '../../components/AuthModal/AuthModal'
 
 import KeyIconSVG from '../../assets/images/Header/key-icon.svg'
 import { Link } from 'react-router-dom'
+import { Context } from '../../index'
+import ProfileHeader from './Profile/ProfileHeader'
+import { observer } from 'mobx-react-lite'
+
+export interface NavLinks {
+    title: string,
+    link: string
+}
 
 const Header = () => {
-    const [burgerActive, setBurgerActive] = useState(false)
-    const [activeNavLink, setActiveNavLink] = useState('Главное меню')
+    const [burgerActive, setBurgerActive] = useState<boolean>(false)
+    const [activeNavLink, setActiveNavLink] = useState<string>('Главное меню')
 
-    const [authModalActive, setAuthModalActive] = useState(false)
+    const [authModalActive, setAuthModalActive] = useState<boolean>(false)
 
-    const navLinks = [
+    const {store} = useContext(Context)
+
+
+    const navLinks: NavLinks[] = [
         {
             title: 'Главное меню',
             link: '/'
@@ -39,6 +50,7 @@ const Header = () => {
             link: '#'
         }
     ]
+
 
     return (
         <>
@@ -72,27 +84,32 @@ const Header = () => {
                                 autoComplete="OFF"
                             />
                         </div>
+                        {
+                            !store.isAuth ?
+                                <div className='header__utils__login unselectable'
+                                     onClick={() => setAuthModalActive(!authModalActive)}>
+                                    <img src={KeyIconSVG} alt='key' className='header__utils__login-key' />
+                                </div> :
+                                    <ProfileHeader />
+                        }
 
-                        <div className="header__utils__login unselectable" onClick={() => setAuthModalActive(!authModalActive)}>
-                            <img src={KeyIconSVG} alt="key" className="header__utils__login-key" />
-                        </div>
 
                         <AuthModal authModalActive={authModalActive} setAuthModalActive={setAuthModalActive}/>
 
 
                         {/* Burger Menu */}
                         <div
-                            className={`burger-menu ${burgerActive === true ? 'active' : ''}`}
+                            className={`burger-menu ${burgerActive ? 'active' : ''}`}
                             onClick={() => setBurgerActive(!burgerActive)}
                         >
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span />
+                            <span />
+                            <span />
                         </div>
                     </div>
                 </div>
             </header>
-            <div className={`burger-nav ${burgerActive === true ? 'active' : ''}`}>
+            <div className={`burger-nav ${burgerActive ? 'active' : ''}`}>
                 {
                     burgerNavLinks.map((item, index) => (
                         <li key={index} onClick={() => setBurgerActive(!burgerActive)}>
@@ -107,4 +124,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default observer(Header)
