@@ -4,10 +4,10 @@ import { Context } from '../../index'
 import { Link } from 'react-router-dom'
 
 
-const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
+const AuthModal = ({ authModalActive, setAuthModalActive }: { authModalActive: boolean, setAuthModalActive: React.SetStateAction<any> }) => {
     const {store} = useContext(Context)
 
-    const [rightPanelActive, setRightPanelActive] = useState(false)
+    const [rightPanelActive, setRightPanelActive] = useState<boolean>(false)
 
     // ======================= Login =======================
 
@@ -79,15 +79,15 @@ const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
                     <form action="#" onSubmit={(event) => event.preventDefault()}>
                         <h1>Регистрация</h1>
                         <div className="auth-modal__content__form-container__social-container">
-                            <a href="#" className="social">
+                            <Link to="#" className="social">
                                 <i className="fab fa-facebook-f" />
-                            </a>
-                            <a href="#" className="social">
+                            </Link>
+                            <Link to="#" className="social">
                                 <i className="fab fa-google-plus-g" />
-                            </a>
-                            <a href="#" className="social">
+                            </Link>
+                            <Link to="#" className="social">
                                 <i className="fab fa-linkedin-in" />
-                            </a>
+                            </Link>
                         </div>
                         <span>или используйте свой E-mail для регистрации</span>
 
@@ -107,15 +107,15 @@ const AuthModal = ({ authModalActive, setAuthModalActive }: any) => {
                     <form action="#" onSubmit={(event) => event.preventDefault()}>
                         <h1>Авторизация</h1>
                         <div className="auth-modal__content__form-container__social-container">
-                            <a href="#" className="social">
+                            <Link to="#" className="social">
                                 <i className="fab fa-facebook-f" />
-                            </a>
-                            <a href="#" className="social">
+                            </Link>
+                            <Link to="#" className="social">
                                 <i className="fab fa-google-plus-g" />
-                            </a>
-                            <a href="#" className="social">
+                            </Link>
+                            <Link to="#" className="social">
                                 <i className="fab fa-linkedin-in" />
-                            </a>
+                            </Link>
                         </div>
                         <span>или используйте свой аккаунт</span>
                         <input type="email" autoComplete="OFF" value={loginData.email} name="email" placeholder="Email" onChange={(e) => loginChangeHandler(e)} required/>

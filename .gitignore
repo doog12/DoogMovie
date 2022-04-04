@@ -26,3 +26,4 @@ yarn-error.log*
 .idea/
 
 server/node_modules
+server/src/static

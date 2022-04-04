@@ -4,6 +4,7 @@ import AuthService from '../service/AuthService'
 import axios from 'axios'
 import { API_URL } from '../http'
 import { AuthResponse } from '../models/response/AuthResponse'
+import { UserInfoResponse } from '../models/response/UserInfoResponse'
 
 export default class Store {
     user = {} as IUser
@@ -64,6 +65,20 @@ export default class Store {
             this.setUser(response.data.user)
         } catch(e: any) {
             console.log(e.response?.data?.message)
+        }
+    }
+
+
+    async getUserInfo(userId: string | undefined) {
+        try {
+            const response = await axios.get<UserInfoResponse>(`${API_URL}/get_user`, {
+                params: {
+                    userId
+                }
+            })
+            return response
+        } catch (e: any) {
+            console.log(e)
         }
     }
 }

@@ -5,13 +5,16 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const authRouter = require('./routes/auth.route')
 const errorMiddleware = require('./middleware/error-middleware')
+const fileUpload = require('express-fileupload')
 require('dotenv').config()
 
 const app = express()
 
 const PORT: string | number = process.env.PORT || 5000
 
+app.use(fileUpload({}))
 app.use(express.json())
+app.use(express.static(__dirname + '/static'))
 app.use(cookieParser())
 app.use(cors({
     credentials: true,

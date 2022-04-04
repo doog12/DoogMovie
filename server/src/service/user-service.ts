@@ -6,6 +6,8 @@ const tokenService = require('./token-service')
 const UserDto = require('../dtos/user-dto')
 const bcrypt = require('bcrypt')
 const ApiErrors = require('../exceptions/api-error')
+const Config = require('../config/config')
+const fs = require('fs')
 
 
 class UserService {
@@ -82,6 +84,47 @@ class UserService {
 
         await tokenService.saveToken(userDto.id, tokens.refreshToken)
         return {...tokens, user: userDto}
+    }
+
+    async getUser(userId: string) {
+        if (!userId) {
+            throw ApiErrors.BadRequest('User ID is undefined')
+        }
+
+        const userInfo = await User.findById(userId)
+
+        if (!userInfo) {
+            throw ApiErrors.BadRequest('Пользователя с таким ID не существует')
+        }
+
+        return userInfo
+    }
+
+    async uploadAvatar(file: any, userId: string) {
+        const user = await User.findById(userId)
+        const avatarName: string = uuid.v4() + ".jpg"
+        file.mv(Config.paths.static + "\\avatar\\" + avatarName)
+        user.avatar = avatarName
+        await user.save()
+        return user
+    }
+
+    async deleteAvatar(userId: string) {
+        const defaultAvatar: string = Config.user.defaultAvatarName
+        const staticPath: string = Config.paths.static
+
+        const user = await User.findById(userId)
+
+        if (user.avatar === defaultAvatar) {
+            throw ApiErrors.BadRequest('Your avatar is default now. We can\'t delete it.')
+        }
+
+        fs.unlinkSync(staticPath + "\\avatar\\" + user.avatar)
+        user.avatar = defaultAvatar
+
+        await user.save()
+
+        return user
     }
 }
 

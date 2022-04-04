@@ -70,8 +70,8 @@
         display: flex;
         align-items: center;
         @media screen and (max-width: 800px) {
-            margin: 0 auto;
-            display: block;
+            justify-content: center;
+            flex-wrap: wrap;
         }
     }
 }
@@ -124,7 +124,7 @@
 
         border-radius: 10px;
         height: 100%;
-        width: 0%;
+        width: 0;
         z-index: -1;
         background: #ff186c;
         transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);

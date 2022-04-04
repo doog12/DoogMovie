@@ -69,6 +69,42 @@ class AuthController {
             next(e)
         }
     }
+
+    async getUser(req: any, res: any, next: any) {
+        try {
+            const userId = req.query.userId
+            const userInfo = await userService.getUser(userId)
+
+            return res.json(userInfo)
+        } catch(e) {
+            next(e)
+        }
+    }
+
+    async uploadAvatar(req: any, res: any, next: any) {
+        try {
+            const file = req.files.file
+            const userId = req.body.userId
+
+            const user = await userService.uploadAvatar(file, userId)
+            return res.json({ message: "Avatar was successfully uploaded", user})
+        } catch(e) {
+            next(e)
+        }
+    }
+
+    async deleteAvatar(req: any, res: any, next: any) {
+        try {
+            const { userId } = req.body
+
+            const user = await userService.deleteAvatar(userId)
+
+            return res.json({ message: "Avatar was successfully deleted", user})
+        } catch(e) {
+            next(e)
+        }
+    }
+
 }
 
 module.exports = new AuthController()

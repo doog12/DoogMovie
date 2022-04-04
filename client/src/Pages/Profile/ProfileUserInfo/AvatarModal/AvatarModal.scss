@@ -1,0 +1,127 @@
+.avatar-modal {
+    transform: translateY(-100%); // -100%
+    position: fixed;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 10;
+
+    font-family: 'PT Sans', sans-serif;
+
+    &__content {
+        opacity: 0; // 0
+        transition: opacity .9s;
+
+        position: absolute;
+        z-index: 12;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        overflow: hidden; // hidden
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        width: 900px; //768px
+        max-width: 100%;
+        min-height: 560px; //480px
+
+        background-color: #efefef;
+
+        &__header {
+            width: 100%;
+            text-align: center;
+            padding: 3% 0 3% 0;
+            border-bottom: 1px dotted #bfbfbf;
+            margin-bottom: 4%;
+            h3 {
+                color: #000;
+                font-size: 2rem;
+            }
+        }
+
+        &__uploader {
+            height: 100%;
+            width: 100%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &__field {
+                width: 70%;
+                height: 50%;
+
+                cursor: pointer;
+
+                p {
+                    font-size: 1.4rem;
+                }
+                em {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+        &__footer {
+            position: absolute;
+            bottom: 0;
+
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 3% 2% 3%;
+        }
+
+
+
+    }
+
+    &__blur {
+        width: 100%;
+        height: 100%;
+
+        backdrop-filter: blur(15px) brightness(0.8);
+
+        z-index: 11;
+
+        opacity: 1; // 0
+        transition: opacity 1s, transform .3s;
+
+        cursor: pointer; // в .active
+    }
+
+    &.active {
+        transform: translateY(0);
+
+        .avatar-modal__content {
+            opacity: 1;
+        }
+        .avatar-modal__blur {
+            opacity: 1;
+            cursor: pointer;
+        }
+    }
+
+    &__button {
+        font-family: 'PT Sans', sans-serif;
+        padding: 9px 14px 9px 14px;
+        border-radius: 5px;
+        white-space: nowrap;
+        font-size: 1.4rem;
+        letter-spacing: 0.3px;
+    }
+}
+
+.delete-avatar {
+    background-color: #f37b7b;
+}
+
+.save-avatar {
+    background: #81ff9c;
+    margin-left: 8px;
+}

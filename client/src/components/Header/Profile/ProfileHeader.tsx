@@ -2,8 +2,11 @@ import React, { useContext } from 'react'
 import ProfileIcon from '../../../assets/images/Header/user_icon.png'
 import { NavLinks } from '../Header'
 import { Context } from '../../../index'
+import { NavLink } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 
 import './ProfileHeader.scss'
+
 
 const ProfileHeader = () => {
 
@@ -12,7 +15,7 @@ const ProfileHeader = () => {
     const navLinks: NavLinks[] = [
         {
             title: 'Профиль',
-            link: '/profile'
+            link: `/profile/${store.user.id}`
         },
         {
             title: 'Избранное',
@@ -29,8 +32,8 @@ const ProfileHeader = () => {
             <div className='header__utils__profile__dropdown__menu'>
                 {
                     navLinks.map((item: NavLinks, index: number) => (
-                        <a href={item.link} className='header__utils__profile__dropdown__menu__item'
-                           key={index}>{item.title}</a>
+                        <NavLink to={item.link} className='header__utils__profile__dropdown__menu__item'
+                           key={index}>{item.title}</NavLink>
                     ))
                 }
                 <button className='header__utils__profile__dropdown__menu__item'
@@ -40,4 +43,4 @@ const ProfileHeader = () => {
     )
 }
 
-export default ProfileHeader
+export default observer(ProfileHeader)

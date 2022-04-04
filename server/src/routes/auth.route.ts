@@ -11,7 +11,9 @@ router.post('/registration', [
 ], controller.registration)
 router.post('/login', controller.login)
 router.post('/logout', controller.logout)
+router.post('/upload_avatar', controller.uploadAvatar)
 router.get('/activate/:link', controller.activate)
 router.get('/refresh', controller.refresh)
-
+router.get('/get_user', controller.getUser)
+router.delete('/delete_avatar', controller.deleteAvatar)
 module.exports = router
