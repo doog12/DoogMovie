@@ -1,71 +1,12 @@
-import React, { ChangeEvent, useContext, useState } from 'react'
+import React, { useState } from 'react'
 import './AuthModal.scss'
-import { Context } from '../../index'
-import { Link } from 'react-router-dom'
 
+import AuthModalLogin from './AuthModalLogin'
+import AuthModalRegistration from './AuthModalRegistration'
 
 const AuthModal = ({ authModalActive, setAuthModalActive }: { authModalActive: boolean, setAuthModalActive: React.SetStateAction<any> }) => {
-    const {store} = useContext(Context)
 
     const [rightPanelActive, setRightPanelActive] = useState<boolean>(false)
-
-    // ======================= Login =======================
-
-    const [loginData, setLoginData] = useState({
-        email: '',
-        password: ''
-    })
-    const loginChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setLoginData({...loginData, [event.target.name]: event.target.value})
-    }
-    const loginRequest = () => {
-        store.login(loginData.email, loginData.password)
-            .then((response: number | undefined) => {
-                if (response !== 200) {
-                    return console.log('CRASHED!')
-                }
-                setAuthModalActive(false)
-            })
-            .then(() => {
-                setLoginData({
-                    email: '',
-                    password: ''
-                })
-            })
-    }
-
-    // =====================================================
-
-
-    // ======================= Registration =======================
-
-    const [registrationData, setRegistrationData] = useState({
-        name: '',
-        email: '',
-        password: ''
-    })
-    const registrationChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setRegistrationData({...registrationData, [event.target.name]: event.target.value})
-    }
-    const registrationRequest = () => {
-        store.registration(registrationData.name, registrationData.email, registrationData.password)
-            .then((response: number | undefined) => {
-                if (response !== 200) {
-                    return console.log('CRASHED!')
-                }
-                setRightPanelActive(!rightPanelActive)
-            })
-            .then(() => {
-                setRegistrationData({
-                    name: '',
-                    email: '',
-                    password: ''
-                })
-            })
-
-    }
-
-    // ============================================================
 
 
     return (
@@ -74,58 +15,11 @@ const AuthModal = ({ authModalActive, setAuthModalActive }: { authModalActive: b
 
 
                 {/*============= SIGN UP =================*/}
-
-                <div className="auth-modal__content__form-container sign-up-container">
-                    <form action="#" onSubmit={(event) => event.preventDefault()}>
-                        <h1>Регистрация</h1>
-                        <div className="auth-modal__content__form-container__social-container">
-                            <Link to="#" className="social">
-                                <i className="fab fa-facebook-f" />
-                            </Link>
-                            <Link to="#" className="social">
-                                <i className="fab fa-google-plus-g" />
-                            </Link>
-                            <Link to="#" className="social">
-                                <i className="fab fa-linkedin-in" />
-                            </Link>
-                        </div>
-                        <span>или используйте свой E-mail для регистрации</span>
-
-                        <input type="text" autoComplete="OFF" value={registrationData.name} name="name" placeholder="Имя" onChange={(e) => registrationChangeHandler(e)} required/>
-                        <input type="email" autoComplete="OFF" value={registrationData.email} name="email" placeholder="Email" onChange={(e) => registrationChangeHandler(e)} required/>
-                        <input type="password" autoComplete="OFF" value={registrationData.password} name="password" placeholder="Пароль" onChange={(e) => registrationChangeHandler(e)} required/>
-
-                        <button className="auth-modal__content__button" onClick={() => registrationRequest()}>Зарегистрироваться</button>
-
-                    </form>
-                </div>
-
+                <AuthModalRegistration setRightPanelActive={setRightPanelActive} rightPanelActive={rightPanelActive}/>
 
                 {/*============= SIGN IN =================*/}
+                <AuthModalLogin setAuthModalActive={setAuthModalActive} />
 
-                <div className="auth-modal__content__form-container sign-in-container">
-                    <form action="#" onSubmit={(event) => event.preventDefault()}>
-                        <h1>Авторизация</h1>
-                        <div className="auth-modal__content__form-container__social-container">
-                            <Link to="#" className="social">
-                                <i className="fab fa-facebook-f" />
-                            </Link>
-                            <Link to="#" className="social">
-                                <i className="fab fa-google-plus-g" />
-                            </Link>
-                            <Link to="#" className="social">
-                                <i className="fab fa-linkedin-in" />
-                            </Link>
-                        </div>
-                        <span>или используйте свой аккаунт</span>
-                        <input type="email" autoComplete="OFF" value={loginData.email} name="email" placeholder="Email" onChange={(e) => loginChangeHandler(e)} required/>
-                        <input type="password" autoComplete="OFF" value={loginData.password} name="password" placeholder="Пароль" onChange={(e) => loginChangeHandler(e)} required/>
-                        <Link to="/forgot_password" className="auth-modal__content__forgot-password">Забыли пароль?</Link>
-
-                        <button className="auth-modal__content__button" onClick={() => loginRequest()}>Вход</button>
-
-                    </form>
-                </div>
 
 
                 <div className="auth-modal__content__overlay-container">

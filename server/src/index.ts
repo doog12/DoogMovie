@@ -39,7 +39,6 @@ async function start(): Promise<void> {
         })
         app.listen(PORT, (): void => {
             console.log(`Server started on port ${PORT}`);
-            // console.log(process.env)
         })
     } catch (error) {
         console.log(error);

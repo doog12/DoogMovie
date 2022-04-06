@@ -1,18 +1,23 @@
 const jwt = require('jsonwebtoken')
 const Token = require('../models/TokenModel')
 
-const JWT_ACCESS_SECRET: string = "" + process.env.JWT_ACCESS_SECRET
-const JWT_REFRESH_SECRET: string = "" + process.env.JWT_REFRESH_SECRET
 
 interface TokenGenerator {
     accessToken: string,
     refreshToken: string
 }
 
+interface TokenPayload {
+    email: string,
+    id: string,
+    name: string,
+    isActivated: boolean
+}
+
 class TokenService {
-    generateTokens(payload: any): TokenGenerator {
-        const accessToken: string = jwt.sign(payload, JWT_ACCESS_SECRET, { expiresIn: "1h" })
-        const refreshToken: string = jwt.sign(payload, JWT_REFRESH_SECRET, { expiresIn: "30d" })
+    generateTokens(payload: TokenPayload): TokenGenerator {
+        const accessToken: string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: "1h" })
+        const refreshToken: string = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: "30d" })
 
         return {
             accessToken,
@@ -30,13 +35,13 @@ class TokenService {
     }
 
     async removeToken(refreshToken: string) {
-        const tokenData: object | string = await Token.deleteOne({ refreshToken })
+        const tokenData: object = await Token.deleteOne({ refreshToken })
         return tokenData
     }
 
     validateAccessToken(token: string) {
         try {
-            const userData: object | string = jwt.verify(token, process.env.JWT_ACCESS_SECRET)
+            const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET)
             return userData
         } catch(e) {
             return null
@@ -45,7 +50,7 @@ class TokenService {
 
     validateRefreshToken(token: string) {
         try {
-            const userData: object | string = jwt.verify(token, process.env.JWT_REFRESH_SECRET)
+            const userData: TokenPayload = jwt.verify(token, process.env.JWT_REFRESH_SECRET)
             return userData
         } catch(e) {
             return null

@@ -1,17 +1,19 @@
-import React, { useContext, useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import Dropzone from '../../../../components/Dropzone/Dropzone'
-
-import './AvatarModal.scss'
-import { Context } from '../../../../index'
-import { observer } from 'mobx-react-lite'
 import $api from '../../../../http'
 
-const AvatarModal = ({ isAvatarModal, setAvatarModal }: { isAvatarModal: boolean, setAvatarModal: React.Dispatch<React.SetStateAction<boolean>> })  => {
+import './AvatarModal.scss'
 
-    const { store } = useContext(Context)
-    const userId: string = store.user.id
+interface AvatarModalProps {
+    isAvatarModal: boolean,
+    setAvatarModal: Dispatch<SetStateAction<boolean>>,
+    setUpdateData: Dispatch<SetStateAction<boolean>>,
+    updateData: boolean
+}
 
+
+const AvatarModal = ({ isAvatarModal, setAvatarModal, setUpdateData, updateData }: AvatarModalProps)  => {
     const [file, setFile] = useState<File[]>([])
     const [isFile, setIsFile] = useState<boolean>(false)
 
@@ -21,13 +23,13 @@ const AvatarModal = ({ isAvatarModal, setAvatarModal }: { isAvatarModal: boolean
         const formData = new FormData()
 
         formData.append('file', file![0])
-        formData.append('userId', userId)
 
         $api.post('/upload_avatar', formData)
             .then(() => {
                 setFile([])
                 setIsFile(false)
                 setAvatarModal(!isAvatarModal)
+                setUpdateData(!updateData)
             })
     }
 
@@ -37,10 +39,9 @@ const AvatarModal = ({ isAvatarModal, setAvatarModal }: { isAvatarModal: boolean
     }
 
     const deleteButtonHandler = () => {
-        $api.delete('/delete_avatar', {
-            data: { userId }
-        })
+        $api.delete('/delete_avatar')
             .then(() => {
+                setUpdateData(!updateData)
                 setAvatarModal(!isAvatarModal)
             })
     }
@@ -76,4 +77,4 @@ const AvatarModal = ({ isAvatarModal, setAvatarModal }: { isAvatarModal: boolean
     )
 }
 
-export default observer(AvatarModal)
+export default AvatarModal

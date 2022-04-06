@@ -9,7 +9,8 @@
     "build": "tsc",
     "dev": "concurrently \"yarn client\" \"yarn server\""
   },
-  "dependencies": {
+	"type": "commonjs",
+	"dependencies": {
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",

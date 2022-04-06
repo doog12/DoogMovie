@@ -71,7 +71,7 @@ class UserService {
         if (!refreshToken) {
             throw ApiErrors.UnauthorizedError()
         }
-        const userData: {id: number} = tokenService.validateRefreshToken(refreshToken)
+        const userData: TokenPayload | null = tokenService.validateRefreshToken(refreshToken)
         const tokenFromDB = await tokenService.findToken(refreshToken)
 
         if (!userData || !tokenFromDB) {
@@ -116,7 +116,7 @@ class UserService {
         const user = await User.findById(userId)
 
         if (user.avatar === defaultAvatar) {
-            throw ApiErrors.BadRequest('Your avatar is default now. We can\'t delete it.')
+            throw ApiErrors.BadRequest('Your avatar is default now. It can\'t be deleted.')
         }
 
         fs.unlinkSync(staticPath + "\\avatar\\" + user.avatar)

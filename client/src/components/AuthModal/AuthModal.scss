@@ -42,6 +42,9 @@
             top: 0;
             height: 100%;
             transition: all 0.6s ease-in-out;
+            h1, span {
+                color: #0F1015;
+            }
             form {
                 background: #fff;
                 display: flex;
@@ -57,13 +60,9 @@
                 background: #eee;
                 border: none;
                 padding: 12px 15px;
-                margin: 8px 0;
+                margin: 8px 0 2px 0;
                 width: 100%;
                 border-radius: 7px;
-
-                &[type=password] {
-                    margin-bottom: 8%;
-                }
             }
 
             &__social-container {
@@ -173,7 +172,6 @@
             opacity: 1;
         }
         .auth-modal__blur {
-            // transform: translateY(0);
             opacity: 1;
             cursor: pointer;
         }
@@ -234,4 +232,21 @@
 /* Same effect for right */
 .auth-modal__content.right-panel-active .overlay-right {
     transform: translateY(20%);
+}
+
+.validation-msg {
+    width: 100%;
+    text-align: left;
+    font-size: 1.2rem;
+    opacity: 1;
+    transition: opacity .2s;
+    padding-left: 4px;
+    margin-bottom: 8px;
+    p {
+        color: #bb2626;
+    }
+
+    &:last-of-type {
+        margin-bottom: 8%;
+    }
 }

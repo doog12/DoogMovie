@@ -84,7 +84,7 @@ class AuthController {
     async uploadAvatar(req: any, res: any, next: any) {
         try {
             const file = req.files.file
-            const userId = req.body.userId
+            const userId = req.user.id
 
             const user = await userService.uploadAvatar(file, userId)
             return res.json({ message: "Avatar was successfully uploaded", user})
@@ -95,7 +95,7 @@ class AuthController {
 
     async deleteAvatar(req: any, res: any, next: any) {
         try {
-            const { userId } = req.body
+            const userId = req.user.id
 
             const user = await userService.deleteAvatar(userId)
 

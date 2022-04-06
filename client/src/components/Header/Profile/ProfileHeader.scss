@@ -20,6 +20,8 @@
         transition-duration: .3s;
         transition-delay: .15s;
 
+        z-index: 3;
+
         &:hover {
             visibility: visible;
             opacity: 1;

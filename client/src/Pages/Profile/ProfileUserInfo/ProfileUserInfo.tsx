@@ -18,12 +18,12 @@ const ProfileUserInfo = () => {
 
     const [user, setUser] = useState<UserInfoResponse>()
 
-
+    const [updateData, setUpdateData] = useState<boolean>(false)
     // Fetching user data to visualise it on Profile page
     useEffect(() => {
         store.getUserInfo(userId)
             .then((response) => setUser(response?.data))
-    }, [])
+    }, [updateData])
 
 
     const [isAvatarModal, setAvatarModal] = useState<boolean>(false)
@@ -32,10 +32,10 @@ const ProfileUserInfo = () => {
     return (
         <div className="profile-page__user">
             <div className='profile-page__user__avatar' onClick={() => setAvatarModal(!isAvatarModal)}>
-                <img src={`${SERVER_URL}/avatar/${user?.avatar}`} className="non-draggable" alt='avatar'/>
+                <img src={`${SERVER_URL}/avatar/${user?.avatar || 'default-user.png'}`} className="non-draggable" alt='avatar'/>
             </div>
 
-            <AvatarModal isAvatarModal={isAvatarModal} setAvatarModal={setAvatarModal} />
+            <AvatarModal isAvatarModal={isAvatarModal} setAvatarModal={setAvatarModal} setUpdateData={setUpdateData} updateData={updateData}/>
 
             <div className='profile-page__user__info unselectable'>
                 <div className='profile-page__user__info__name'>
