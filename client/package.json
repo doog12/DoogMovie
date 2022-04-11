@@ -32,7 +32,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write **/*.ts **/*.tsx"
+    "prettier": "prettier --write **/*.ts **/*.tsx",
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "stylelint-fix": "stylelint \"src/*.scss\" --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +55,11 @@
     ]
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "stylelint": "^14.6.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.2.0"
   }
 }
