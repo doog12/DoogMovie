@@ -37,7 +37,7 @@
     "stylelint": "stylelint \"src/**/*.scss\"",
     "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
     "eslint": "eslint src/*",
-    "eslint:workflow": "eslint --max-warnings 0 src/*",
+    "eslint:workflow": "eslint --max-warnings 0 --no-error-on-unmatched-pattern \"src/*.{ts,tsx}\"",
     "eslint:fix": "eslint src/* --fix",
     "eslint:write": "eslint --debug src/* --fix"
   },
