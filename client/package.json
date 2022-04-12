@@ -33,11 +33,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prettier": "prettier --write src/**/*.ts src/**/*.tsx",
-		"prettier:check": "prettier --check --debug-check src/**/*.ts src/**/*.tsx",
+		"prettier:check": "prettier --check src/**/*.ts src/**/*.tsx",
     "stylelint": "stylelint \"src/**/*.scss\"",
     "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
     "eslint": "eslint \"src/*\"",
-    "eslint:workflow": "eslint --max-warnings 0 --no-error-on-unmatched-pattern --fix \"src/*.{ts,tsx}\"",
+    "eslint:workflow": "eslint --max-warnings 0 --no-error-on-unmatched-pattern \"src/*.{ts,tsx}\"",
     "eslint:fix": "eslint --fix \"src/*\"",
     "eslint:write": "eslint --debug --fix \"src/*\""
   },
