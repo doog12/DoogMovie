@@ -1,4 +1,4 @@
-name: Client-side lint
+name: FRONTEND LINT TEST
 
 on:
     push:
@@ -8,25 +8,43 @@ on:
 
 jobs:
     lint:
-        name: 'Check the source code'
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
+        defaults:
+            run:
+                working-directory: ./client
+        strategy:
+            matrix:
+                os:
+                  - ubuntu-latest
+                  - macos-latest
+                  - windows-latest
+                node-version:
+                  - 12
+                  - 14
+                  - 16
+                architecture:
+                  - x64
+        name: USING NODE ${{ matrix.node-version }} - ${{ matrix.architecture }} on ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@v2
-            - name: 'Change directory'
-              run: cd client
-            - uses: borales/actions-yarn@v2.3.0
-              name: 'Installing dependencies'
+            - name: CHECK-OUT GIT REPOSITORY
+              uses: actions/checkout@v3
+
+            - name: SETUP NODE
+              uses: actions/setup-node@v3
               with:
-                  cmd: install
-            - uses: borales/actions-yarn@v2.3.0
-              name: 'ESLint checking'
-              with:
-                  cmd: eslint:debug
-            - uses: borales/actions-yarn@v2.3.0
-              name: 'Prettier format checking'
-              with:
-                  cmd: prettier:check
-            - uses: borales/actions-yarn@v2.3.0
-              name: 'Stylelint checking'
-              with:
-                  cmd: stylelint
+                  node-version: ${{ matrix.node-version }}
+                  architecture: ${{ matrix.architecture }}
+                  cache: 'yarn'
+
+            - name: INSTALL PROJECT DEPENDENCIES (YARN)
+              run: yarn install
+
+            - name: ESLINT CHECK
+              run: yarn eslint:debug
+
+            - name: PRETTIER FORMAT CHECK
+              run: yarn prettier:check
+
+
+            - name: STYLELINT CHECK
+              run: yarn stylelint
