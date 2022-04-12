@@ -32,15 +32,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write **/*.ts **/*.tsx",
+    "prettier": "prettier --write src/**/*.ts src/**/*.tsx",
+		"prettier:check": "prettier --check --debug-check src/**/*.ts src/**/*.tsx",
     "stylelint": "stylelint \"src/**/*.scss\"",
-    "stylelint-fix": "stylelint \"src/*.scss\" --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "stylelint:fix": "stylelint \"src/*.scss\" --fix",
+    "eslint": "eslint src/*",
+    "eslint:debug": "eslint --debug --max-warnings 0 src/*",
+    "eslint:fix": "eslint src/* --fix",
+    "eslint:write": "eslint --debug src/* --fix"
   },
   "browserslist": {
     "production": [
@@ -55,9 +54,33 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
     "prettier": "^2.5.1",
     "stylelint": "^14.6.1",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-scss": "^4.2.0"
-  }
+  },
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.(js|jsx|ts|tsx)": [
+			"yarn eslint:write",
+			"yarn prettier",
+			"yarn stylelint:fix",
+			"git add"
+		]
+	}
 }
