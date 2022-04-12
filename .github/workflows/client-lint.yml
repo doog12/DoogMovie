@@ -1,0 +1,32 @@
+name: Client-side lint
+
+on:
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
+
+jobs:
+    lint:
+        name: 'Check the source code'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: 'Change directory'
+              run: cd client
+            - uses: borales/actions-yarn@v2.3.0
+              name: 'Installing dependencies'
+              with:
+                  cmd: install
+            - uses: borales/actions-yarn@v2.3.0
+              name: 'ESLint checking'
+              with:
+                  cmd: eslint:debug
+            - uses: borales/actions-yarn@v2.3.0
+              name: 'Prettier format checking'
+              with:
+                  cmd: prettier:check
+            - uses: borales/actions-yarn@v2.3.0
+              name: 'Stylelint checking'
+              with:
+                  cmd: stylelint
