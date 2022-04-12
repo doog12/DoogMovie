@@ -11,34 +11,30 @@ import Slide from './Slide/Slide'
 
 SwiperCore.use([Navigation])
 
-const Slider = ({ trailers, type }: { trailers: any, type: string }) => {
+const Slider = ({ trailers, type }: { trailers: any; type: string }) => {
     const params: any = {
         slidesPerView: 3.5,
         spaceBetween: 13,
-        navigation: true,
+        navigation: true
     }
 
     return (
         <Swiper {...params}>
-            {
-                type === 'movie' || 'tv' ? (
-                    trailers.filter((item: any) => item.type === 'Trailer').map((item: any, index: number) => (
-                        <SwiperSlide key={index}>
-                            <Slide data={item} type={type}/>
-                        </SwiperSlide>
-                    ))
-                ) : ('')
-            }
+            {type === 'movie' || 'tv'
+                ? trailers.map((item: any, index: number) => (
+                      <SwiperSlide key={index}>
+                          <Slide data={item} type={type} />
+                      </SwiperSlide>
+                  ))
+                : ''}
 
-            {
-                type === 'anime' ? (
-                    trailers.map((item: any, index: number) => (
-                        <SwiperSlide key={index}>
-                            <Slide data={item} type={type}/>
-                        </SwiperSlide>
-                    ))
-                ) : ('')
-            }
+            {type === 'anime'
+                ? trailers.map((item: any, index: number) => (
+                      <SwiperSlide key={index}>
+                          <Slide data={item} type={type} />
+                      </SwiperSlide>
+                  ))
+                : ''}
         </Swiper>
     )
 }

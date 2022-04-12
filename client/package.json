@@ -35,9 +35,9 @@
     "prettier": "prettier --write src/**/*.ts src/**/*.tsx",
 		"prettier:check": "prettier --check --debug-check src/**/*.ts src/**/*.tsx",
     "stylelint": "stylelint \"src/**/*.scss\"",
-    "stylelint:fix": "stylelint \"src/*.scss\" --fix",
+    "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
     "eslint": "eslint src/*",
-    "eslint:debug": "eslint --debug --max-warnings 0 src/*",
+    "eslint:workflow": "eslint --max-warnings 0 src/*",
     "eslint:fix": "eslint src/* --fix",
     "eslint:write": "eslint --debug src/* --fix"
   },

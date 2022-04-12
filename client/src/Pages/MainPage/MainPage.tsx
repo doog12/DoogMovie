@@ -3,7 +3,6 @@ import React from 'react'
 import MainPageIntro from './MainPageIntro/MainPageIntro'
 import MainPageContent from './MainPageContent/MainPageContent'
 
-
 import './MainPage.scss'
 
 const MainPage = () => {

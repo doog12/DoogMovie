@@ -4,8 +4,6 @@ import { FilmAuthors } from '../@interfaces/series.interfaces'
 import './SeriesPageIntro.scss'
 
 const SeriesPageIntro = ({ details, type }: { details: any; type: string }) => {
-    // axios.get(`https://videocdn.tv/api/short?api_token=${VIDEOCDN_API}&imdb_id=${IMDB_ID}`)
-
     if (!!details) {
         const backgroundImage =
             type === 'anime'
@@ -29,10 +27,12 @@ const SeriesPageIntro = ({ details, type }: { details: any; type: string }) => {
                             <img src={posterImage} alt="poster" />
                         </div>
 
-                        <div>
+                        <div className="series-page__intro__content__wrapper">
                             {/* TITLE */}
                             <div className="series-page__intro__content__title">
                                 <p>{details.title}</p>
+
+                                <div className="series-page__intro__content__title__actions"></div>
                             </div>
 
                             {/* SUBTITLE */}
@@ -77,29 +77,29 @@ const SeriesPageIntro = ({ details, type }: { details: any; type: string }) => {
 
                             {/* AUTHORS */}
                             <div className="series-page__intro__content__info">
-                                {details.networks ? (
-                                    details.networks.map((item: any, index: number) => (
-                                        <div
-                                            className="series-page__intro__content__info__item shield-item"
-                                            key={index}
-                                        >
-                                            {item.logo_path ? (
-                                                <div className="series-page__intro__content__info__item__img">
-                                                    <img
-                                                        src={`https://image.tmdb.org/t/p/w200${item.logo_path}`}
-                                                        alt={`${item.name}`}
-                                                        className="unselectable"
-                                                    />
-                                                </div>
-                                            ) : (
-                                                ''
-                                            )}
-                                            <div className="series-page__intro__content__info__item__author">
-                                                <p>{item.name}</p>
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : ('')}
+                                {details.networks
+                                    ? details.networks.map((item: any, index: number) => (
+                                          <div
+                                              className="series-page__intro__content__info__item shield-item"
+                                              key={index}
+                                          >
+                                              {item.logo_path ? (
+                                                  <div className="series-page__intro__content__info__item__img">
+                                                      <img
+                                                          src={`https://image.tmdb.org/t/p/w200${item.logo_path}`}
+                                                          alt={`${item.name}`}
+                                                          className="unselectable"
+                                                      />
+                                                  </div>
+                                              ) : (
+                                                  ''
+                                              )}
+                                              <div className="series-page__intro__content__info__item__author">
+                                                  <p>{item.name}</p>
+                                              </div>
+                                          </div>
+                                      ))
+                                    : ''}
                                 {details.authors.map((item: any, index: number) => (
                                     <div
                                         className="series-page__intro__content__info__item shield-item"

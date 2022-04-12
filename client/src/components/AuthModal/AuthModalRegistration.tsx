@@ -5,12 +5,15 @@ import { Context } from '../../index'
 import { useForm } from 'react-hook-form'
 
 interface AuthModalRegistrationProps {
-    rightPanelActive: boolean,
+    rightPanelActive: boolean
     setRightPanelActive: Dispatch<SetStateAction<boolean>>
 }
 
-const AuthModalRegistration = ({rightPanelActive, setRightPanelActive}: AuthModalRegistrationProps) => {
-    const {store} = useContext(Context)
+const AuthModalRegistration = ({
+    rightPanelActive,
+    setRightPanelActive
+}: AuthModalRegistrationProps) => {
+    const { store } = useContext(Context)
 
     const {
         register,
@@ -21,16 +24,14 @@ const AuthModalRegistration = ({rightPanelActive, setRightPanelActive}: AuthModa
         mode: 'onBlur'
     })
 
-
     const registrationRequest = (name: string, email: string, password: string) => {
-        store.registration(name, email, password)
-            .then((response: number | undefined) => {
-                if (response !== 200) {
-                    return console.log('CRASHED!')
-                }
-                setRightPanelActive(!rightPanelActive)
-                reset()
-            })
+        store.registration(name, email, password).then((response: number | undefined) => {
+            if (response !== 200) {
+                return console.log('CRASHED!')
+            }
+            setRightPanelActive(!rightPanelActive)
+            reset()
+        })
     }
 
     const onSubmitRegistration = (data: any) => {
@@ -54,19 +55,41 @@ const AuthModalRegistration = ({rightPanelActive, setRightPanelActive}: AuthModa
                 </div>
                 <span>или используйте свой E-mail для регистрации</span>
 
-                <input type="text" {...register('name', authValidation.name)} placeholder="Имя" autoComplete="OFF" />
-                <div className="validation-msg">{errors?.name && <p>{errors?.name?.message || 'Error! Try again.'}</p>}</div>
+                <input
+                    type="text"
+                    {...register('name', authValidation.name)}
+                    placeholder="Имя"
+                    autoComplete="OFF"
+                />
+                <div className="validation-msg">
+                    {errors?.name && <p>{errors?.name?.message || 'Error! Try again.'}</p>}
+                </div>
 
-                <input type="email" {...register('email', authValidation.email)} placeholder="Email" autoComplete="OFF" />
-                <div className="validation-msg">{errors?.email && <p>{errors?.email?.message || 'Error! Try again.'}</p>}</div>
+                <input
+                    type="email"
+                    {...register('email', authValidation.email)}
+                    placeholder="Email"
+                    autoComplete="OFF"
+                />
+                <div className="validation-msg">
+                    {errors?.email && <p>{errors?.email?.message || 'Error! Try again.'}</p>}
+                </div>
 
-                <input  type="password" {...register('password', authValidation.password)} placeholder="Пароль" autoComplete="OFF" />
-                <div className="validation-msg">{errors?.password && <p>{errors?.password?.message || 'Error! Try again.'}</p>}</div>
+                <input
+                    type="password"
+                    {...register('password', authValidation.password)}
+                    placeholder="Пароль"
+                    autoComplete="OFF"
+                />
+                <div className="validation-msg">
+                    {errors?.password && <p>{errors?.password?.message || 'Error! Try again.'}</p>}
+                </div>
 
-                <button type="submit" className="auth-modal__content__button">Зарегистрироваться</button>
+                <button type="submit" className="auth-modal__content__button">
+                    Зарегистрироваться
+                </button>
             </form>
         </div>
-
     )
 }
 

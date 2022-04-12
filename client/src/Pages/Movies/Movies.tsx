@@ -1,42 +1,39 @@
-import React, { useState, Suspense, lazy, useEffect} from 'react'
+import React, { useState, Suspense, lazy, useEffect } from 'react'
 import axios from 'axios'
 
 import './Movies.scss'
 import './Dropdown.scss'
 
-
 const LazyMovieCard = lazy(() => import('./MovieCard/MovieCard'))
 
-
 interface Data {
-    id: number,
-    poster_path: string,
-    title: string,
-    original_title: string,
-    popularity: number,
-    vote_average: number,
+    id: number
+    poster_path: string
+    title: string
+    original_title: string
+    popularity: number
+    vote_average: number
     release_date: string | number
 }
 
 export interface Movie {
-    id: number,
-    poster: string,
+    id: number
+    poster: string
     title: string
     imageAlt: string
 }
 
 interface MoviesState {
-    id: number,
-    poster: string,
-    title: string,
-    imageAlt: string,
-    popularity: number,
-    rating: number,
+    id: number
+    poster: string
+    title: string
+    imageAlt: string
+    popularity: number
+    rating: number
     releaseDate: string | number
 }
 
 const Movies = () => {
-
     //! =============================== FETCHING DATA FROM API ===============================
     const TMDB_API = process.env.REACT_APP_TMDB_API // API KEY
 
@@ -48,22 +45,19 @@ const Movies = () => {
 
     // API Request Function
     const getMovies = () => {
-        axios.get(popularMovieUrl)
-        .then(response => {
+        axios.get(popularMovieUrl).then((response) => {
             const data = response.data.results
 
             // Transform data
-            const outputData: MoviesState[] = data.map((item: Data) => (
-                {
-                    id: item.id,
-                    poster: item.poster_path,
-                    title: item.title,
-                    imageAlt: item.original_title,
-                    popularity: item.popularity,
-                    rating: item.vote_average,
-                    releaseDate: item.release_date
-                }
-            ))
+            const outputData: MoviesState[] = data.map((item: Data) => ({
+                id: item.id,
+                poster: item.poster_path,
+                title: item.title,
+                imageAlt: item.original_title,
+                popularity: item.popularity,
+                rating: item.vote_average,
+                releaseDate: item.release_date
+            }))
 
             setMovies(outputData)
         })
@@ -73,7 +67,6 @@ const Movies = () => {
         getMovies()
     }, [])
     //! ======================================================================================
-
 
     //! ================================== DROPDOWN SETTINGS =================================
     type TypeMenuItems = {
@@ -101,59 +94,77 @@ const Movies = () => {
         }
     ]
 
-        //* ============================= SORT FUNCTIONS =============================
+    //* ============================= SORT FUNCTIONS =============================
 
-        const sortByPopularity = () => {
-            const sort = movies.sort((a: MoviesState, b: MoviesState) => a.popularity > b.popularity ? -1 : 1)
-            setMovies(sort)
-        }
-        const sortByRating = () => {
-            const sort = movies.sort((a: MoviesState, b: MoviesState) => a.rating > b.rating ? -1 : 1)
-            setMovies(sort)
-        }
-        const sortByReleaseData = () => {
-            const sort = movies.sort((a: MoviesState, b: MoviesState) => a.releaseDate > b.releaseDate ? -1 : 1)
-            setMovies(sort)
-        }
+    const sortByPopularity = () => {
+        const sort = movies.sort((a: MoviesState, b: MoviesState) =>
+            a.popularity > b.popularity ? -1 : 1
+        )
+        setMovies(sort)
+    }
+    const sortByRating = () => {
+        const sort = movies.sort((a: MoviesState, b: MoviesState) => (a.rating > b.rating ? -1 : 1))
+        setMovies(sort)
+    }
+    const sortByReleaseData = () => {
+        const sort = movies.sort((a: MoviesState, b: MoviesState) =>
+            a.releaseDate > b.releaseDate ? -1 : 1
+        )
+        setMovies(sort)
+    }
 
-        //* ==========================================================================
+    //* ==========================================================================
     //! ======================================================================================
-
 
     return (
         <div className="movies-page">
             <div className="container">
                 <div className="movies-page__toolbar">
                     <div className="movies-page__toolbar__display">
-
                         <div className="movies-page__toolbar__display__dropdown">
-                            <p className={`movies-page__toolbar__display__dropdown__title ${visible ? 'active' : ''}`} onClick={() => setVisible(!visible)}>{value}</p>
-                            <div className={`movies-page__toolbar__display__dropdown__menu ${visible ? 'active' : ''}`}>
+                            <p
+                                className={`movies-page__toolbar__display__dropdown__title ${
+                                    visible ? 'active' : ''
+                                }`}
+                                onClick={() => setVisible(!visible)}
+                            >
+                                {value}
+                            </p>
+                            <div
+                                className={`movies-page__toolbar__display__dropdown__menu ${
+                                    visible ? 'active' : ''
+                                }`}
+                            >
                                 <div className="movies-page__toolbar__display__dropdown__menu__list">
-                                    {
-                                        menuItems.map((item: TypeMenuItems, index: number) => (
-                                            <div className="movies-page__toolbar__display__dropdown__menu__list__item" onClick={() => {
+                                    {menuItems.map((item: TypeMenuItems, index: number) => (
+                                        <div
+                                            className="movies-page__toolbar__display__dropdown__menu__list__item"
+                                            onClick={() => {
                                                 setValue(item.value)
                                                 setVisible(!visible)
                                                 item.sort()
-                                            }} key={index}>{item.value}</div>
-                                        ))
-                                    }
+                                            }}
+                                            key={index}
+                                        >
+                                            {item.value}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div className="movies-page__cards">
-                    {
-                        movies.map((movie: Movie, index: number) => (
-                            <Suspense fallback={<div>Loading...</div>} key={`${index}_${movie.id}`}>
-                                <LazyMovieCard id={movie.id} poster={movie.poster} title={movie.title} imageAlt={movie.imageAlt} />
-                            </Suspense>
-                        ))
-                    }
-
+                    {movies.map((movie: Movie, index: number) => (
+                        <Suspense fallback={<div>Loading...</div>} key={`${index}_${movie.id}`}>
+                            <LazyMovieCard
+                                id={movie.id}
+                                poster={movie.poster}
+                                title={movie.title}
+                                imageAlt={movie.imageAlt}
+                            />
+                        </Suspense>
+                    ))}
                 </div>
             </div>
         </div>

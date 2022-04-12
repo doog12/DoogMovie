@@ -12,14 +12,12 @@ import Profile from './Pages/Profile/Profile'
 import { Context } from './index'
 
 function App() {
-
-    const {store} = useContext(Context)
+    const { store } = useContext(Context)
     useEffect(() => {
-        if(localStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
             store.checkAuth()
         }
     }, [])
-
 
     return (
         <BrowserRouter>
@@ -27,9 +25,9 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/movie/:id" element={<SeriesPage type="movie"/>} />
-                    <Route path="/tv/:id" element={<SeriesPage type="tv"/>} />
-                    <Route path="/anime/:id" element={<SeriesPage type="anime"/>} />
+                    <Route path="/movie/:id" element={<SeriesPage type="movie" />} />
+                    <Route path="/tv/:id" element={<SeriesPage type="tv" />} />
+                    <Route path="/anime/:id" element={<SeriesPage type="anime" />} />
                     <Route path="/movies" element={<Movies />} />
                     <Route path="/tv" element={<Tv />} />
                     <Route path="/animes" element={<Animes />} />

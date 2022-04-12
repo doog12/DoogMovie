@@ -1,9 +1,10 @@
 .series-page__trailers {
     &__title {
-        font-family: 'PT Sans';
+        font-family: "PT Sans";
         font-size: calc(13px + 10 * (100vw / 1690));
         margin-bottom: 1.5%;
     }
+
     &__videos {
         &__item {
             iframe {

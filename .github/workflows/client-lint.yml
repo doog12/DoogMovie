@@ -38,7 +38,7 @@ jobs:
               run: yarn install
 
             - name: ESLINT CHECK
-              run: yarn eslint:debug
+              run: yarn eslint:workflow
 
             - name: PRETTIER FORMAT CHECK
               run: yarn prettier:check

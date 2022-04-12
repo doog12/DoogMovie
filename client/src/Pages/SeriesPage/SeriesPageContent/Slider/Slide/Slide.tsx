@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Slide = ({data, type}: {data: any, type: string}) => {
-    const srcLink = type === 'anime' ? data.player_url : `http://www.youtube.com/embed/${data.key}`
+const Slide = ({ data, type }: { data: any; type: string }) => {
+    const srcLink = type === 'anime' ? data.player_url : `https://www.youtube.com/embed/${data.key}`
 
     return (
         <div className="series-page__trailers__videos__item unselectable">

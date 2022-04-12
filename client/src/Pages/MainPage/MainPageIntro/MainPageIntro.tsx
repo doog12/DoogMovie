@@ -21,8 +21,14 @@ const MainPageIntro = () => {
                     без ограничений
                 </h3>
                 <div className="main-page__intro__buttons unselectable">
-                    <a href="https://github.com/doog12/DoogMovie" target="_blank" rel="noreferrer" className="github-btn">
-                        <img src={GitHubLogo} alt="github" width={28} height={28} />GitHub-репозиторий
+                    <a
+                        href="https://github.com/doog12/DoogMovie"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="github-btn"
+                    >
+                        <img src={GitHubLogo} alt="github" width={28} height={28} />
+                        GitHub-репозиторий
                     </a>
                     <Link to="#" className="faq-btn">
                         FAQ
@@ -30,7 +36,9 @@ const MainPageIntro = () => {
                 </div>
             </div>
             <div className="main-page__intro__right-side">
-                <div className="main-page__intro__right-side__group-images unselectable"><img src={PNG} alt="png" /></div>
+                <div className="main-page__intro__right-side__group-images unselectable">
+                    <img src={PNG} alt="png" />
+                </div>
             </div>
         </div>
     )

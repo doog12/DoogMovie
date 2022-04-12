@@ -1,15 +1,16 @@
 .animes-page__toolbar__display__dropdown {
     text-align: center;
     max-width: 150px;
+
     &__title {
-        font-family: 'PT Sans', sans-serif;
+        font-family: "PT Sans", sans-serif;
         font-size: 20px;
         margin-bottom: 2%;
         cursor: pointer;
         position: relative;
 
         &::after {
-            content: '';
+            content: "";
             position: absolute;
             top: 43%;
             right: -16%;
@@ -20,7 +21,7 @@
 
         &.active {
             &::after {
-                transform: rotate(-90deg) translateX(3px)
+                transform: rotate(-90deg) translateX(3px);
             }
         }
     }
@@ -33,14 +34,16 @@
         &__list {
             height: 100%;
             transition: all 0.4s;
+
             &__item {
                 height: 100%;
                 cursor: default;
                 color: #0f1015;
                 font-size: 15px;
-                background: rgb(235, 235, 235);
+                background: rgb(235 235 235);
                 opacity: 0.9;
                 transition: all 0.4s;
+
                 &:hover {
                     opacity: 1;
                 }
@@ -48,6 +51,7 @@
                 &:first-child {
                     border-radius: 5px 5px 0 0;
                 }
+
                 &:last-child {
                     border-radius: 0 0 5px 5px;
                 }
@@ -57,6 +61,7 @@
         &.active {
             height: 100%;
             opacity: 1;
+
             .animes-page__toolbar__display__dropdown__menu__list__item {
                 padding: 15px;
                 cursor: pointer;

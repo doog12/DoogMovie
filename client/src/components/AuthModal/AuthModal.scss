@@ -9,7 +9,8 @@
 
     z-index: 10;
 
-    font-family: 'PT Sans', sans-serif;
+    font-family: "PT Sans", sans-serif;
+
     // transition: transform .01s;
 
     &__content {
@@ -23,7 +24,7 @@
         transform: translate(-50%, -50%);
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 14px 28px rgb(0 0 0 / 0.25), 0 10px 10px rgb(0 0 0 / 0.22);
         width: 768px;
         max-width: 100%;
         min-height: 480px;
@@ -32,6 +33,7 @@
             font-size: 30px;
             margin-bottom: 2%;
         }
+
         &__subtitle {
             font-size: 15px;
             margin-bottom: 10%;
@@ -42,9 +44,12 @@
             top: 0;
             height: 100%;
             transition: all 0.6s ease-in-out;
-            h1, span {
-                color: #0F1015;
+
+            h1,
+            span {
+                color: #0f1015;
             }
+
             form {
                 background: #fff;
                 display: flex;
@@ -60,7 +65,7 @@
                 background: #eee;
                 border: none;
                 padding: 12px 15px;
-                margin: 8px 0 2px 0;
+                margin: 8px 0 2px;
                 width: 100%;
                 border-radius: 7px;
             }
@@ -97,15 +102,16 @@
             &:active {
                 transform: scale(0.95);
             }
+
             &:focus {
                 outline: none;
             }
+
             &.ghost {
                 background: transparent;
                 border-color: #fff;
             }
         }
-
 
         &__overlay {
             background: #ff416c;
@@ -146,7 +152,7 @@
         }
 
         &__forgot-password {
-            color: #0F1015;
+            color: #0f1015;
             font-size: 14px;
             margin-bottom: 4%;
         }
@@ -164,21 +170,19 @@
         transition: transform .3s;
     }
 
-
     &.active {
         transform: translateY(0);
 
         .auth-modal__content {
             opacity: 1;
         }
+
         .auth-modal__blur {
             opacity: 1;
             cursor: pointer;
         }
     }
 }
-
-
 
 .sign-in-container {
     left: 0;
@@ -242,6 +246,7 @@
     transition: opacity .2s;
     padding-left: 4px;
     margin-bottom: 8px;
+
     p {
         color: #bb2626;
     }

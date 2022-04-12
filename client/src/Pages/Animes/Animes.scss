@@ -1,5 +1,4 @@
 .animes-page {
-
     &__cards {
         display: flex;
         flex-wrap: wrap;
@@ -8,10 +7,10 @@
         align-items: stretch;
 
         @media screen and (max-width: 730px) {
-            gap: 25px
+            gap: 25px;
         }
         @media screen and (max-width: 589px) {
-            gap: 20px
+            gap: 20px;
         }
     }
 

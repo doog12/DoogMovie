@@ -1,37 +1,39 @@
 //* Utils import
-@import 'utils/vars';
-@import 'utils/mixins';
-@import 'utils/fonts';
+
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/fonts";
 
 html {
-	font-size: $fontSize;
-	width: 100%;
-	max-width: 100%;
+    font-size: $fontSize;
+    width: 100%;
+    max-width: 100%;
 }
+
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 
-	@if $mainFont {
-		font-family: $mainFont;
-	}
+    @if $mainFont {
+        font-family: $mainFont;
+    }
 
-	font-size: 1rem;
+    font-size: 1rem;
 
-	width: 100vw;
-	max-width: 100%;
+    width: 100vw;
+    max-width: 100%;
 
     height: 100vh;
 
-	background-color: $bodyBgColor;
-	color: $bodyTextColor;
+    background-color: $bodyBgColor;
+    color: $bodyTextColor;
 }
 
 //* ===== RESET STYLES =====
 *,
-*:before,
-*:after {
-	box-sizing: border-box;
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 h1,
@@ -42,28 +44,29 @@ h5,
 h6,
 p,
 span {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 button {
-	outline: 0;
-	border: 0;
-	cursor: pointer;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
 }
+
 button[disabled] {
     cursor: default;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
     color: inherit;
 }
 
 li {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 ul {
@@ -75,32 +78,33 @@ ul {
 
 //* ==== CONTAINER ====
 .container {
-	margin: 0 auto;
+    margin: 0 auto;
     box-sizing: border-box;
-	max-width: $maxWidth;
-	min-width: $minWidth;
-	width: 100%;
-	height: 100%;
+    max-width: $maxWidth;
+    min-width: $minWidth;
+    width: 100%;
+    height: 100%;
 
-	padding: 0 $containerPadding;
+    padding: 0 $containerPadding;
 }
+
 //* ==================
 
 .unselectable {
-	-webkit-touch-callout: none; // iOS Safari
-	-webkit-user-select: none; // Chrome/Safari/Opera
-	-khtml-user-select: none; // Konqueror
-	-moz-user-select: none; // Firefox
-	-ms-user-select: none; // Internet Explorer/Edge
-	user-select: none; // Non-prefixed version, currently not supported by any browser
+    -webkit-touch-callout: none; // iOS Safari
+    user-select: none; // Chrome/Safari/Opera
+    user-select: none; // Konqueror
+    user-select: none; // Firefox
+    user-select: none; // Internet Explorer/Edge
+    user-select: none; // Non-prefixed version, currently not supported by any browser
 }
 
 .non-draggable {
-	user-drag: none;
-	user-select: none;
-	-webkit-user-drag: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
+    user-drag: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    user-select: none;
 }
 
 //* Body Overflow: hidden

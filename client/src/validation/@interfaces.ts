@@ -1,27 +1,27 @@
 export interface AuthValidation {
     name: {
-        required: string | boolean,
+        required: string | boolean
         minLength: {
-            value: number,
+            value: number
             message: string
-        },
-    },
+        }
+    }
     email: {
-        required: string | boolean,
+        required: string | boolean
         pattern: {
-            value: RegExp,
+            value: RegExp
             message: string
-        },
-    },
+        }
+    }
     password: {
-        required: string | boolean,
+        required: string | boolean
         minLength: {
-            value: number,
+            value: number
             message: string
-        },
+        }
         maxLength: {
-            value: number,
+            value: number
             message: string
-        },
+        }
     }
 }

@@ -7,10 +7,8 @@ import { observer } from 'mobx-react-lite'
 
 import './ProfileHeader.scss'
 
-
 const ProfileHeader = () => {
-
-    const {store} = useContext(Context)
+    const { store } = useContext(Context)
 
     const navLinks: NavLinks[] = [
         {
@@ -23,21 +21,31 @@ const ProfileHeader = () => {
         }
     ]
 
-
     return (
-        <div className='header__utils__profile'>
-            <div className='header__utils__login unselectable'>
-                <img src={ProfileIcon} alt='profile' className='header__utils__login-key header__utils__profile__img' />
+        <div className="header__utils__profile">
+            <div className="header__utils__login unselectable">
+                <img
+                    src={ProfileIcon}
+                    alt="profile"
+                    className="header__utils__login-key header__utils__profile__img"
+                />
             </div>
-            <div className='header__utils__profile__dropdown__menu'>
-                {
-                    navLinks.map((item: NavLinks, index: number) => (
-                        <NavLink to={item.link} className='header__utils__profile__dropdown__menu__item'
-                           key={index}>{item.title}</NavLink>
-                    ))
-                }
-                <button className='header__utils__profile__dropdown__menu__item'
-                   onClick={() => store.logout()}>Выйти</button>
+            <div className="header__utils__profile__dropdown__menu">
+                {navLinks.map((item: NavLinks, index: number) => (
+                    <NavLink
+                        to={item.link}
+                        className="header__utils__profile__dropdown__menu__item"
+                        key={index}
+                    >
+                        {item.title}
+                    </NavLink>
+                ))}
+                <button
+                    className="header__utils__profile__dropdown__menu__item"
+                    onClick={() => store.logout()}
+                >
+                    Выйти
+                </button>
             </div>
         </div>
     )

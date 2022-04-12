@@ -73,10 +73,9 @@ const Animes = () => {
     }, [])
     //! ======================================================================================
 
-
     //! ================================== DROPDOWN SETTINGS =================================
     type TypeMenuItems = {
-        value: string,
+        value: string
         sort: Function
     }
 
@@ -104,25 +103,27 @@ const Animes = () => {
         }
     ]
 
-        //* ============================= SORT FUNCTIONS =============================
+    //* ============================= SORT FUNCTIONS =============================
 
-        const sortByRating = () => {
-            const sort = animes.sort((a: AnimesState, b: AnimesState) => a.rating > b.rating ? -1 : 1)
-            setAnimes(sort)
-        }
-        const sortByReleaseData = () => {
-            const sort = animes.sort((a: AnimesState, b: AnimesState) => a.releaseDate > b.releaseDate ? -1 : 1)
-            setAnimes(sort)
-        }
-        const sortByEpisodes = () => {
-            const sort = animes.sort((a: AnimesState, b: AnimesState) => a.episodes > b.episodes ? -1 : 1)
-            setAnimes(sort)
-        }
+    const sortByRating = () => {
+        const sort = animes.sort((a: AnimesState, b: AnimesState) => (a.rating > b.rating ? -1 : 1))
+        setAnimes(sort)
+    }
+    const sortByReleaseData = () => {
+        const sort = animes.sort((a: AnimesState, b: AnimesState) =>
+            a.releaseDate > b.releaseDate ? -1 : 1
+        )
+        setAnimes(sort)
+    }
+    const sortByEpisodes = () => {
+        const sort = animes.sort((a: AnimesState, b: AnimesState) =>
+            a.episodes > b.episodes ? -1 : 1
+        )
+        setAnimes(sort)
+    }
 
-        //* ==========================================================================
+    //* ==========================================================================
     //! ======================================================================================
-
-
 
     return (
         <div className="animes-page">

@@ -4,9 +4,12 @@ import { authValidation } from '../../validation/auth-validation'
 import { useForm } from 'react-hook-form'
 import { Context } from '../../index'
 
-
-const AuthModalLogin = ({setAuthModalActive}: {setAuthModalActive: Dispatch<SetStateAction<boolean>>}) => {
-    const {store} = useContext(Context)
+const AuthModalLogin = ({
+    setAuthModalActive
+}: {
+    setAuthModalActive: Dispatch<SetStateAction<boolean>>
+}) => {
+    const { store } = useContext(Context)
     const {
         register,
         formState: { errors },
@@ -17,7 +20,8 @@ const AuthModalLogin = ({setAuthModalActive}: {setAuthModalActive: Dispatch<SetS
     })
 
     const loginRequest = (email: string, password: string) => {
-        store.login(email, password)
+        store
+            .login(email, password)
             .then((response: number | undefined) => {
                 if (response !== 200) {
                     return console.log('CRASHED!')
@@ -49,13 +53,29 @@ const AuthModalLogin = ({setAuthModalActive}: {setAuthModalActive: Dispatch<SetS
                     </Link>
                 </div>
                 <span>или используйте свой аккаунт</span>
-                <input type="email" {...register('email', authValidation.email)} placeholder="Email" autoComplete="OFF" />
-                <div className="validation-msg">{errors?.email && <p>{errors?.email?.message || 'Error! Try again.'}</p>}</div>
+                <input
+                    type="email"
+                    {...register('email', authValidation.email)}
+                    placeholder="Email"
+                    autoComplete="OFF"
+                />
+                <div className="validation-msg">
+                    {errors?.email && <p>{errors?.email?.message || 'Error! Try again.'}</p>}
+                </div>
 
-                <input  type="password" {...register('password', authValidation.password)} placeholder="Пароль" autoComplete="OFF" />
-                <div className="validation-msg">{errors?.password && <p>{errors?.password?.message || 'Error! Try again.'}</p>}</div>
+                <input
+                    type="password"
+                    {...register('password', authValidation.password)}
+                    placeholder="Пароль"
+                    autoComplete="OFF"
+                />
+                <div className="validation-msg">
+                    {errors?.password && <p>{errors?.password?.message || 'Error! Try again.'}</p>}
+                </div>
 
-                <Link to="/forgot_password" className="auth-modal__content__forgot-password">Забыли пароль?</Link>
+                <Link to="/forgot_password" className="auth-modal__content__forgot-password">
+                    Забыли пароль?
+                </Link>
 
                 <button className="auth-modal__content__button">Вход</button>
             </form>

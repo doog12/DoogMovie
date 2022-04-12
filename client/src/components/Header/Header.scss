@@ -8,27 +8,28 @@
         width: 100%;
         height: 100%;
 
-        padding: 0 5.21% 0 5.21%;
-
+        padding: 0 5.21%;
 
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         @media screen and (max-width: 370px) {
-            padding: 0 3% 0 3%;
+            padding: 0 3%;
         }
     }
 
     &__logo {
         &__title {
-            font-family: 'Guardians', sans-serif;
+            font-family: "Guardians", sans-serif;
             font-size: calc(10px + 10 * (100vw / 1670));
+
             // font-size: 2rem;
             color: #e3e3e5;
             word-spacing: -8px;
             white-space: nowrap;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: rgb(0 0 0 / 0);
+
             &__span-red {
                 color: #ff166e;
             }
@@ -38,23 +39,24 @@
                     font-size: calc(12px + 13 * (100vw / 1670));
                 }
             }
-
             @media screen and (max-width: 450px) {
                 max-width: 90px;
                 white-space: normal;
                 text-align: center;
                 line-height: 1.2;
+
                 a {
                     font-size: 16px;
+
                     span {
                         font-size: 19px;
                     }
                 }
             }
-
             @media screen and (max-width: 370px) {
                 a {
                     font-size: 14px;
+
                     span {
                         font-size: 17px;
                     }
@@ -72,7 +74,7 @@
             &__input {
                 width: 290px;
                 height: 46px;
-                background-image: url('../../assets//images/Header/search-icon.svg');
+                background-image: url("../../assets//images/Header/search-icon.svg");
                 background-repeat: no-repeat;
                 background-position: center left 20px;
                 background-color: #23232d;
@@ -83,12 +85,13 @@
                 border: 0;
                 border-radius: 10px;
 
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 font-size: 1.5rem;
-                color: rgb(218, 218, 218);
+                color: rgb(218 218 218);
 
                 opacity: 0.8;
                 transition: 0.4s;
+
                 &:hover,
                 &:active,
                 &:focus {
@@ -96,25 +99,24 @@
                 }
 
                 &::placeholder {
-                    color: rgb(218, 218, 218);
+                    color: rgb(218 218 218);
                 }
 
                 @media screen and (max-width: 1450px) {
                     width: 240px;
                 }
-
                 @media screen and (max-width: 1150px) {
                     width: 200px;
                 }
                 @media screen and (max-width: 1050px) {
                     height: 40px;
                 }
-
                 @media screen and (max-width: 980px) {
-                    width: 0px;
+                    width: 0;
                     background-size: 30px;
                     background-color: transparent;
                     transition: 0.4s;
+
                     &::placeholder {
                         color: transparent;
                     }
@@ -124,9 +126,11 @@
                         width: 200px;
                         background-size: 20px;
                         background-color: #23232d;
+
                         &::placeholder {
-                            color: rgb(218, 218, 218);
+                            color: rgb(218 218 218);
                         }
+
                         @media screen and (max-width: 920px) {
                             width: 170px;
                         }
@@ -134,12 +138,12 @@
                 }
                 @media screen and (max-width: 730px) {
                     height: 46px;
+
                     &:hover,
                     &:active {
                         width: 250px;
                     }
                 }
-
                 @media screen and (max-width: 620px) {
                     &:hover,
                     &:active {
@@ -158,7 +162,6 @@
                         width: 200px;
                     }
                 }
-
                 @media screen and (max-width: 492px) {
                     &:hover,
                     &:active {
@@ -219,7 +222,6 @@
                     opacity: 1;
                 }
 
-
                 @media screen and (max-width: 525px) {
                     display: none;
                 }
@@ -232,6 +234,7 @@
 .navbar {
     display: flex;
     align-items: center;
+
     &__list {
         display: flex;
 
@@ -243,6 +246,7 @@
             font-weight: 700;
             white-space: nowrap;
             font-size: calc(10px + 10 * (100vw / 1670));
+
             // font-size: 2rem;
             margin-right: 7rem;
 
@@ -268,6 +272,7 @@
             }
             @media screen and (max-width: 850px) {
                 font-size: calc(14px + 7 * (100vw / 1670));
+
                 &:first-child {
                     display: none;
                 }

@@ -12,19 +12,16 @@ const MovieCard = ({ id, poster, title, imageAlt }: Movie) => {
             <div className="movies-page__cards__card">
                 <div className="movies-page__cards__card__content">
                     <div className="movies-page__cards__card__image">
-
-                            <img
-                                src={ImagePath}
-                                alt={`Poster ${imageAlt}`}
-                                className="movies-page__cards__card__image__img"
-                            />
-
+                        <img
+                            src={ImagePath}
+                            alt={`Poster ${imageAlt}`}
+                            className="movies-page__cards__card__image__img"
+                        />
                     </div>
 
-                        <div className="movies-page__cards__card__title">
-                            <p>{title}</p>
-                        </div>
-
+                    <div className="movies-page__cards__card__title">
+                        <p>{title}</p>
+                    </div>
                 </div>
             </div>
         </Link>

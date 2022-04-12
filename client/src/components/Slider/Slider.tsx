@@ -23,7 +23,7 @@ const Slider = ({ data, anime, type }: SliderProps) => {
         breakpoints: {
             320: {
                 slidesPerView: anime ? 3 : 2,
-                spaceBetween: 20,
+                spaceBetween: 20
             },
             430: {
                 slidesPerView: anime ? 3.5 : 2.2,
@@ -52,7 +52,9 @@ const Slider = ({ data, anime, type }: SliderProps) => {
         <Swiper {...params}>
             {data.map((item: any, index: number) => (
                 <SwiperSlide key={`${index}_${item.id}`}>
-                    <Slide image={item.backgroundImage} id={item.id} type={type}>{item.title}</Slide>
+                    <Slide image={item.backgroundImage} id={item.id} type={type}>
+                        {item.title}
+                    </Slide>
                 </SwiperSlide>
             ))}
         </Swiper>

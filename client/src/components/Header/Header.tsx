@@ -11,7 +11,7 @@ import ProfileHeader from './Profile/ProfileHeader'
 import { observer } from 'mobx-react-lite'
 
 export interface NavLinks {
-    title: string,
+    title: string
     link: string
 }
 
@@ -21,8 +21,7 @@ const Header = () => {
 
     const [authModalActive, setAuthModalActive] = useState<boolean>(false)
 
-    const {store} = useContext(Context)
-
+    const { store } = useContext(Context)
 
     const navLinks: NavLinks[] = [
         {
@@ -46,11 +45,21 @@ const Header = () => {
     const burgerNavLinks = [
         ...navLinks,
         {
-            title: 'Войти / Зарегистрироваться',
-            link: '#'
+            title: !store.isAuth ? 'Войти / Зарегистрироваться' : 'Профиль',
+            link: '#',
+            onClick: (): void => {
+                setBurgerActive(!burgerActive)
+                setAuthModalActive(!authModalActive)
+            }
         }
     ]
 
+    const burgerOnClick = (item: any): void => {
+        if (item && item.onClick) {
+            return item.onClick()
+        }
+        return setBurgerActive(!burgerActive)
+    }
 
     return (
         <>
@@ -67,7 +76,13 @@ const Header = () => {
                     <nav className="navbar">
                         <ul className="navbar__list unselectable">
                             {navLinks.map((item, index) => (
-                                <li className={`navbar__list__item ${activeNavLink === item.title ? 'active' : ''}`} key={index} onClick={() => setActiveNavLink(item.title)} >
+                                <li
+                                    className={`navbar__list__item ${
+                                        activeNavLink === item.title ? 'active' : ''
+                                    }`}
+                                    key={index}
+                                    onClick={() => setActiveNavLink(item.title)}
+                                >
                                     <Link to={item.link}>{item.title}</Link>
                                 </li>
                             ))}
@@ -84,18 +99,25 @@ const Header = () => {
                                 autoComplete="OFF"
                             />
                         </div>
-                        {
-                            !store.isAuth ?
-                                <div className='header__utils__login unselectable'
-                                     onClick={() => setAuthModalActive(!authModalActive)}>
-                                    <img src={KeyIconSVG} alt='key' className='header__utils__login-key' />
-                                </div> :
-                                    <ProfileHeader />
-                        }
+                        {!store.isAuth ? (
+                            <div
+                                className="header__utils__login unselectable"
+                                onClick={() => setAuthModalActive(!authModalActive)}
+                            >
+                                <img
+                                    src={KeyIconSVG}
+                                    alt="key"
+                                    className="header__utils__login-key"
+                                />
+                            </div>
+                        ) : (
+                            <ProfileHeader />
+                        )}
 
-
-                        <AuthModal authModalActive={authModalActive} setAuthModalActive={setAuthModalActive}/>
-
+                        <AuthModal
+                            authModalActive={authModalActive}
+                            setAuthModalActive={setAuthModalActive}
+                        />
 
                         {/* Burger Menu */}
                         <div
@@ -110,15 +132,13 @@ const Header = () => {
                 </div>
             </header>
             <div className={`burger-nav ${burgerActive ? 'active' : ''}`}>
-                {
-                    burgerNavLinks.map((item, index) => (
-                        <li key={index} onClick={() => setBurgerActive(!burgerActive)}>
-                            <Link to={item.link} className="burger-nav__link">
-                                {item.title}
-                            </Link>
-                        </li>
-                    ))
-                }
+                {burgerNavLinks.map((item, index) => (
+                    <li key={index} onClick={() => burgerOnClick(item)}>
+                        <Link to={item.link} className="burger-nav__link">
+                            {item.title}
+                        </Link>
+                    </li>
+                ))}
             </div>
         </>
     )

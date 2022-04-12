@@ -1,13 +1,11 @@
 .main-page__intro {
     display: flex;
     justify-content: space-between;
-    // flex-wrap: wrap;
-    padding: 6.5% 5% 0 5%;
+    padding: 6.5% 5% 0;
 
     @media screen and (max-width: 1110px) {
         padding: 6.5% 1% 0 2%;
     }
-
     @media screen and (max-width: 800px) {
         margin-bottom: 6%;
         justify-content: center;
@@ -15,10 +13,12 @@
 
     &__left-side {
         flex: 1 1 50%;
+
         @media screen and (max-width: 800px) {
             flex: 1 1 100%;
             text-align: center;
-          }
+        }
+
         &__upper-title {
             font-size: calc(9.3px + 6 * (100vw / 1690));
             color: #e9e9e9;
@@ -32,6 +32,7 @@
             &:hover {
                 opacity: 1;
             }
+
             @media screen and (max-width: 800px) {
                 pointer-events: none;
             }
@@ -58,6 +59,7 @@
             flex: 0;
         }
         flex: 1 1 50%;
+
         &__group-images {
             img {
                 max-width: 100%;
@@ -69,6 +71,7 @@
     &__buttons {
         display: flex;
         align-items: center;
+
         @media screen and (max-width: 800px) {
             justify-content: center;
             flex-wrap: wrap;
@@ -82,7 +85,7 @@
     background: #ff186c;
     border-radius: 10px;
 
-    padding: 2% 5% 2% 5%;
+    padding: 2% 5%;
     opacity: 0.9;
     transition: 0.5s;
 
@@ -101,7 +104,7 @@
 }
 
 .faq-btn {
-    -webkit-tap-highlight-color: rgba($color: #000000, $alpha: 0);
+    -webkit-tap-highlight-color: rgba($color: #000, $alpha: 0);
     position: relative;
     font-size: calc(10px + 9 * (100vw / 1690));
     color: #ff186c;
@@ -110,12 +113,12 @@
     border: 1px solid #ff186c;
     border-radius: 10px;
 
-    padding: 2% 5% 2% 5%;
+    padding: 2% 5%;
 
     transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
 
     &::before {
-        content: '';
+        content: "";
         display: block;
 
         position: absolute;
@@ -132,6 +135,7 @@
 
     &:hover {
         color: #fff;
+
         &::before {
             width: 100%;
             left: 0;
@@ -139,7 +143,7 @@
     }
 
     @media screen and (max-width: 800px) {
-        &:before {
+        &::before {
             display: none;
         }
 
