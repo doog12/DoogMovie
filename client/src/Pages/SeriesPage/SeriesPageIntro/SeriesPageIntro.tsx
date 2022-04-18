@@ -3,16 +3,14 @@ import { FilmAuthors } from '../@interfaces/series.interfaces'
 
 import './SeriesPageIntro.scss'
 
-const SeriesPageIntro = ({ details, type }: { details: any; type: string }) => {
-    if (!!details) {
-        const backgroundImage =
-            type === 'anime'
-                ? `https://shikimori.one${details?.bgImage}`
-                : `https://image.tmdb.org/t/p/original${details?.bgImage}`
-        const posterImage =
-            type === 'anime'
-                ? `https://shikimori.one${details?.posterImage}`
-                : `https://image.tmdb.org/t/p/w300${details?.posterImage}`
+function SeriesPageIntro({ details, type }: { details: any; type: string }) {
+    if (details) {
+        const backgroundImage = type === 'anime'
+            ? `https://shikimori.one${details?.bgImage}`
+            : `https://image.tmdb.org/t/p/original${details?.bgImage}`
+        const posterImage = type === 'anime'
+            ? `https://shikimori.one${details?.posterImage}`
+            : `https://image.tmdb.org/t/p/w300${details?.posterImage}`
 
         return (
             <div
@@ -32,7 +30,7 @@ const SeriesPageIntro = ({ details, type }: { details: any; type: string }) => {
                             <div className="series-page__intro__content__title">
                                 <p>{details.title}</p>
 
-                                <div className="series-page__intro__content__title__actions"></div>
+                                <div className="series-page__intro__content__title__actions" />
                             </div>
 
                             {/* SUBTITLE */}
@@ -79,26 +77,26 @@ const SeriesPageIntro = ({ details, type }: { details: any; type: string }) => {
                             <div className="series-page__intro__content__info">
                                 {details.networks
                                     ? details.networks.map((item: any, index: number) => (
-                                          <div
-                                              className="series-page__intro__content__info__item shield-item"
-                                              key={index}
-                                          >
-                                              {item.logo_path ? (
-                                                  <div className="series-page__intro__content__info__item__img">
-                                                      <img
-                                                          src={`https://image.tmdb.org/t/p/w200${item.logo_path}`}
-                                                          alt={`${item.name}`}
-                                                          className="unselectable"
-                                                      />
-                                                  </div>
-                                              ) : (
-                                                  ''
-                                              )}
-                                              <div className="series-page__intro__content__info__item__author">
-                                                  <p>{item.name}</p>
-                                              </div>
-                                          </div>
-                                      ))
+                                        <div
+                                          className="series-page__intro__content__info__item shield-item"
+                                          key={index}
+                                        >
+                                            {item.logo_path ? (
+                                                <div className="series-page__intro__content__info__item__img">
+                                                    <img
+                                                      src={`https://image.tmdb.org/t/p/w200${item.logo_path}`}
+                                                      alt={`${item.name}`}
+                                                      className="unselectable"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                ''
+                                            )}
+                                            <div className="series-page__intro__content__info__item__author">
+                                                <p>{item.name}</p>
+                                            </div>
+                                        </div>
+                                    ))
                                     : ''}
                                 {details.authors.map((item: any, index: number) => (
                                     <div
@@ -133,9 +131,8 @@ const SeriesPageIntro = ({ details, type }: { details: any; type: string }) => {
                 <div className="series-page__intro__blur" />
             </div>
         )
-    } else {
-        return <div className="null" />
     }
+    return <div className="null" />
 }
 
 export default SeriesPageIntro

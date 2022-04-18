@@ -23,8 +23,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    transition: all 0.5s;
     transition: all 0.5s;
 }
 
@@ -38,18 +36,15 @@
 
 .burger-menu.active span:first-child {
     transform: translateX(100%);
-    transform: translateX(100%);
 }
 
 .burger-menu.active span:nth-child(2) {
     top: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
-    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .burger-menu.active span:nth-child(3) {
     top: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
     transform: translate(-50%, -50%) rotate(-45deg);
 }
 
@@ -61,11 +56,7 @@
     height: 100%;
     background: #000;
     transform: translateY(-100%);
-    transform: translateY(-100%);
     transition: all 0.4s;
-    transition: all 0.4s;
-    display: box;
-    display: flexbox;
     display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -76,14 +67,13 @@
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     flex-direction: column;
-    flex-direction: column;
     z-index: 998;
 }
 
 .burger-nav li {
     list-style-type: none;
     margin-bottom: 70px;
-    -webkit-tap-highlight-color: rgb(0 0 0 / 0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
     &:last-child {
         margin-bottom: 0;
@@ -97,7 +87,6 @@
 }
 
 .burger-nav.active {
-    transform: translateY(0);
     transform: translateY(0);
 }
 
