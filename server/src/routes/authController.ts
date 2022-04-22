@@ -105,6 +105,32 @@ class AuthController {
         }
     }
 
+    async updateSocialMedia(req: any, res: any, next: any) {
+        try {
+            const userId = req.user
+            const data = Object.entries(req.body)
+
+            const socialMedia = await userService.updateSocialMedia(userId, data)
+
+            return res.json({ message: socialMedia })
+        } catch(e) {
+            next(e)
+        }
+    }
+
+    async deleteSocialMedia(req: any, res: any, next: any) {
+        try {
+            const userId = req.user
+            const { data } = req.body
+
+            const socialMedia = await userService.deleteSocialMedia(userId, data)
+
+            return res.json({ message: socialMedia })
+        } catch(e) {
+            next(e)
+        }
+    }
+
 }
 
 module.exports = new AuthController()

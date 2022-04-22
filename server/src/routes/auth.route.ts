@@ -12,12 +12,14 @@ router.post('/registration', [
 ], controller.registration)
 router.post('/login', controller.login)
 router.post('/logout', controller.logout)
-router.post('/upload_avatar', authMiddleware, controller.uploadAvatar)
+router.post('/uploadAvatar', authMiddleware, controller.uploadAvatar)
+router.post('/updateSocialMedia', authMiddleware, controller.updateSocialMedia)
+router.post('/deleteSocialMedia', authMiddleware, controller.deleteSocialMedia)
 
 router.get('/activate/:link', controller.activate)
 router.get('/refresh', controller.refresh)
-router.get('/get_user', controller.getUser)
+router.get('/getUser', controller.getUser)
 
-router.delete('/delete_avatar', authMiddleware, controller.deleteAvatar)
+router.delete('/deleteAvatar', authMiddleware, controller.deleteAvatar)
 
 module.exports = router

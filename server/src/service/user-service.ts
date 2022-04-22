@@ -1,5 +1,6 @@
 // @ts-ignore
 const User = require('../models/User')
+const ObjectID = require('mongoose').Types.ObjectId
 const uuid = require('uuid')
 const mailService = require('./mail-service')
 const tokenService = require('./token-service')
@@ -125,6 +126,38 @@ class UserService {
         await user.save()
 
         return user
+    }
+
+    async updateSocialMedia(userId: string, data: Array<Array<string>>): Promise<Object> {
+        const id = ObjectID(userId)
+
+        const user = await User.findById(id)
+        if (!user) {
+            throw ApiErrors.BadRequest('Пользователя с таким email не существует')
+        }
+
+        data.forEach(([key, value]: string[]): void => {
+            user.socialMedia[key] = value
+        })
+
+        await user.save()
+
+        return { socialMedia: user.socialMedia }
+    }
+
+    async deleteSocialMedia(userId: string, data: string) {
+        const id = ObjectID(userId)
+
+        const user = await User.findById(id)
+        if (!user) {
+            throw ApiErrors.BadRequest('Пользователя с таким email не существует')
+        }
+
+        user.socialMedia[data] = undefined
+
+        await user.save()
+
+        return { socialMedia: user.socialMedia }
     }
 }
 
