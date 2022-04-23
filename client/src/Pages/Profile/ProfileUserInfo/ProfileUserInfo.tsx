@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { observer } from 'mobx-react-lite'
 import { Context } from '../../../index'
-import { UserInfoResponse } from '../../../models/response/UserInfoResponse'
-import GreenCircle from '../../../assets/images/Profile/green-circle.png'
-import RedCircle from '../../../assets/images/Profile/red-circle.png'
-import AvatarModal from './AvatarModal/AvatarModal'
+
+import AvatarModal from '../../../components/AvatarModal/AvatarModal'
+import ProfileSocialMedia from './ProfileSocialMedia/ProfileSocialMedia'
+import { SocialMedia, UserInfoResponse } from '../../../models/response/UserInfoResponse'
 
 import './ProfileUserInfo.scss'
 
@@ -26,17 +27,23 @@ const ProfileUserInfo = () => {
 
     const [isAvatarModal, setAvatarModal] = useState<boolean>(false)
 
+    const socialMedias = user ? user.socialMedia : {} as SocialMedia
+    const email = user ? user.email : ''
+
+
     return (
         <div className="profile-page__user">
-            <div
-                className="profile-page__user__avatar"
-                onClick={() => setAvatarModal(!isAvatarModal)}
-            >
-                <img
-                    src={`${SERVER_URL}/avatar/${user?.avatar || 'default-user.png'}`}
-                    className="non-draggable"
-                    alt="avatar"
-                />
+            <div className='profile-page__user__mesh'>
+                <div
+                    className="profile-page__user__avatar"
+                    onClick={() => setAvatarModal(!isAvatarModal)}
+                >
+                    <img
+                        src={`${SERVER_URL}/avatar/${user?.avatar || 'default-user.png'}`}
+                        className="non-draggable"
+                        alt="avatar"
+                    />
+                </div>
             </div>
 
             <AvatarModal
@@ -46,28 +53,19 @@ const ProfileUserInfo = () => {
                 updateData={updateData}
             />
 
-            <div className="profile-page__user__info unselectable">
-                <div className="profile-page__user__info__name">
-                    <p>
-                        Имя: <span>{user?.name}</span>
-                    </p>
+
+            <div className='profile-page__container'>
+
+                <div className='profile-page__user__username'>
+                    <p>{user?.name}</p>
                 </div>
-                <div className="profile-page__user__info__email">
-                    <div className="profile-page__user__info__email__text">
-                        <p>
-                            E-mail: <span>{user?.email}</span>
-                        </p>
-                    </div>
-                    <div className="profile-page__user__info__email__is-confirmed">
-                        <img src={user?.isActivated ? GreenCircle : RedCircle} alt="circle" />
-                        <p>{user?.isActivated ? 'Подтверждён' : 'Не подтверждён'}</p>
-                    </div>
-                </div>
-                {/* TODO: Сделать возможность подтверждения тел. номера */}
-                {/*<div className='profile-page__user__info__tel-number'><p>Номер телефона: <span>$number</span></p></div>*/}
+
+                <ProfileSocialMedia socialMedias={socialMedias} email={email} />
+
             </div>
+
         </div>
     )
 }
 
-export default ProfileUserInfo
+export default observer(ProfileUserInfo)
