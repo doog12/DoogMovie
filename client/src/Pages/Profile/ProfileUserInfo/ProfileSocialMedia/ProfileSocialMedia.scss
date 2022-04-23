@@ -1,0 +1,10 @@
+.profile-page__user__social-media {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 6%;
+    &__item {
+        width: 41px;
+        height: 41px;
+    }
+}
