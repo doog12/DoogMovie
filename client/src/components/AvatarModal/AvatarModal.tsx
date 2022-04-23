@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 
-import Dropzone from '../../../../components/Dropzone/Dropzone'
-import $api from '../../../../http'
+import Dropzone from '../Dropzone/Dropzone'
+import $api from '../../http'
 
 import './AvatarModal.scss'
 
@@ -26,7 +26,7 @@ const AvatarModal = ({
 
         formData.append('file', file![0])
 
-        $api.post('/upload_avatar', formData).then(() => {
+        $api.post('/uploadAvatar', formData).then(() => {
             setFile([])
             setIsFile(false)
             setAvatarModal(!isAvatarModal)
@@ -40,7 +40,7 @@ const AvatarModal = ({
     }
 
     const deleteButtonHandler = () => {
-        $api.delete('/delete_avatar').then(() => {
+        $api.delete('/deleteAvatar').then(() => {
             setUpdateData(!updateData)
             setAvatarModal(!isAvatarModal)
         })
