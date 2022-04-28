@@ -1,0 +1,37 @@
+.success-checkmark {
+    width: 100px;
+    margin: 0 auto;
+    padding-top: 20px;
+
+    &__circle {
+        animation: success-circle-animation 1.4s ease-in-out;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 0;
+    }
+
+    &__icon {
+        animation: success-icon-animation 1s ease-in-out;
+        opacity: 1;
+    }
+}
+
+@keyframes success-circle-animation {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes success-icon-animation {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
