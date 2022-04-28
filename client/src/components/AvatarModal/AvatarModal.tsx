@@ -62,7 +62,7 @@ const AvatarModal = ({
                 <div className="avatar-modal__content__footer">
                     <div className="avatar-modal__content__footer__left-side">
                         <button
-                            className="avatar-modal__button delete-avatar"
+                            className="avatar-modal__button delete-button"
                             onClick={() => deleteButtonHandler()}
                         >
                             Удалить текущий аватар
@@ -77,7 +77,7 @@ const AvatarModal = ({
                             Сбросить
                         </button>
                         <button
-                            className="avatar-modal__button save-avatar"
+                            className="avatar-modal__button save-button"
                             disabled={!isFile}
                             onClick={() => saveButtonHandler()}
                         >
