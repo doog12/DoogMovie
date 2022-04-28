@@ -5,6 +5,15 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import Store from './store/store'
 
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import { StepsStyleConfig as Steps } from 'chakra-ui-steps'
+
+const theme = extendTheme({
+    components: {
+        Steps
+    }
+})
+
 interface State {
     store: Store
 }
@@ -18,7 +27,9 @@ export const Context = createContext<State>({
 ReactDOM.render(
     <React.StrictMode>
         <Context.Provider value={{ store }}>
-            <App />
+            <ChakraProvider theme={theme}>
+                <App />
+            </ChakraProvider>
         </Context.Provider>
     </React.StrictMode>,
     document.getElementById('root')
