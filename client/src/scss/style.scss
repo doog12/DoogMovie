@@ -74,6 +74,7 @@ ul {
     padding: 0;
 }
 
+
 //* ====================================
 
 //* ==== CONTAINER ====
@@ -88,29 +89,16 @@ ul {
     padding: 0 $containerPadding;
 }
 
-//* ==================
+//* ===================
 
 .unselectable {
     -webkit-touch-callout: none; // iOS Safari
     user-select: none; // Chrome/Safari/Opera
-    user-select: none; // Konqueror
-    user-select: none; // Firefox
-    user-select: none; // Internet Explorer/Edge
-    user-select: none; // Non-prefixed version, currently not supported by any browser
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .non-draggable {
-    user-drag: none;
-    user-select: none;
     -webkit-user-drag: none;
-    user-select: none;
-    user-select: none;
 }
-
-//* Body Overflow: hidden
-//  body.overflow-hidden {
-//    overflow: hidden;
-//  }
-
-//! PROJECT IMPORTS
-// @import '../components/Header/Header';
