@@ -19,6 +19,11 @@ const AuthModalLogin = ({
         mode: 'onBlur'
     })
 
+    const validation = {
+        email: {...authValidation.email, required: 'Поле обязательно к заполнению!'},
+        password: {...authValidation.password, required: 'Поле обязательно к заполнению!'}
+    }
+
     const loginRequest = (email: string, password: string) => {
         store
             .login(email, password)
@@ -53,9 +58,10 @@ const AuthModalLogin = ({
                     </Link>
                 </div>
                 <span>или используйте свой аккаунт</span>
+
                 <input
                     type="email"
-                    {...register('email', authValidation.email)}
+                    {...register('email', validation.email)}
                     placeholder="Email"
                     autoComplete="OFF"
                 />
@@ -65,7 +71,7 @@ const AuthModalLogin = ({
 
                 <input
                     type="password"
-                    {...register('password', authValidation.password)}
+                    {...register('password', validation.password)}
                     placeholder="Пароль"
                     autoComplete="OFF"
                 />

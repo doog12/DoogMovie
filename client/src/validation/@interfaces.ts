@@ -1,27 +1,39 @@
+interface Props<Value> {
+    value: Value,
+    message: string
+}
+
 export interface AuthValidation {
     name: {
-        required: string | boolean
-        minLength: {
-            value: number
-            message: string
-        }
+        maxLength: Props<number>
+        minLength: Props<number>
     }
     email: {
-        required: string | boolean
-        pattern: {
-            value: RegExp
-            message: string
-        }
+        pattern: Props<RegExp>
     }
     password: {
-        required: string | boolean
-        minLength: {
-            value: number
-            message: string
-        }
-        maxLength: {
-            value: number
-            message: string
-        }
+        minLength: Props<number>
+        maxLength: Props<number>
+    },
+    telNumber: {
+        pattern: Props<RegExp>
+    },
+    telegram: {
+        pattern: Props<RegExp>
+        maxLength: Props<number>
+        minLength: Props<number>
+    },
+    facebook: {
+        pattern: Props<RegExp>
+        minLength: Props<number>
+    },
+    linkedIn: {
+        pattern: Props<RegExp>
+    },
+    viber: {
+        pattern: Props<RegExp>
+    },
+    whatsApp: {
+        pattern: Props<RegExp>
     }
 }

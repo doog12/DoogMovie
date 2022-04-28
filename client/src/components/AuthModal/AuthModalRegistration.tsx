@@ -24,6 +24,12 @@ const AuthModalRegistration = ({
         mode: 'onBlur'
     })
 
+    const validation = {
+        name: {...authValidation.name, required: 'Поле обязательно к заполнению!' },
+        email: {...authValidation.email, required: 'Поле обязательно к заполнению!' },
+        password: {...authValidation.password, required: 'Поле обязательно к заполнению!' }
+    }
+
     const registrationRequest = (name: string, email: string, password: string) => {
         store.registration(name, email, password).then((response: number | undefined) => {
             if (response !== 200) {
@@ -57,7 +63,7 @@ const AuthModalRegistration = ({
 
                 <input
                     type="text"
-                    {...register('name', authValidation.name)}
+                    {...register('name', validation.name)}
                     placeholder="Имя"
                     autoComplete="OFF"
                 />
@@ -67,7 +73,7 @@ const AuthModalRegistration = ({
 
                 <input
                     type="email"
-                    {...register('email', authValidation.email)}
+                    {...register('email', validation.email)}
                     placeholder="Email"
                     autoComplete="OFF"
                 />
@@ -77,7 +83,7 @@ const AuthModalRegistration = ({
 
                 <input
                     type="password"
-                    {...register('password', authValidation.password)}
+                    {...register('password', validation.password)}
                     placeholder="Пароль"
                     autoComplete="OFF"
                 />
