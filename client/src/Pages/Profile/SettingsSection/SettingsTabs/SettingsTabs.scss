@@ -1,0 +1,25 @@
+.profile-page__settings__tabs {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    &__tab {
+        width: 60%;
+        margin-bottom: 4%;
+        cursor: pointer;
+        p {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 1.8rem;
+            color: rgba(#fff, 0.7);
+            transition: all .3s;
+            &:hover {
+                color: rgba(#fff, 1);
+            }
+        }
+        &.active {
+            p {
+                color: rgba(#fff, 1);
+            }
+        }
+    }
+}
