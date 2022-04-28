@@ -1,0 +1,114 @@
+.profile-page__settings {
+    &__content {
+        display: flex;
+    }
+
+    &__tabs {
+        flex: 1 1 33%;
+    }
+    &__inputs {
+        flex: 1 1 33%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+
+        &__section {
+            margin-bottom: 10%;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &__title {
+            font-family: "Open Sans", sans-serif;
+            margin-bottom: 6%;
+            p {
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
+        }
+
+        &__input {
+            position: relative;
+            display: flex;
+            align-items: center;
+            input {
+                width: 230px;
+                margin-bottom: 7px;
+                margin-right: 5px;
+                padding: 7px 15px 7px 35px;
+                font-family: "Open Sans", sans-serif;
+                font-size: 1.2rem;
+                font-weight: 700;
+                opacity: .8;
+                border: 0;
+                border-radius: 3px;
+                transition: all .3s;
+
+                &::placeholder {
+                    font-family: "Open Sans", sans-serif;
+                    font-size: 1.3rem;
+                    font-weight: 400;
+                    color: rgba(44, 44, 44, 0.8);
+                    transition: all .3s;
+                    user-select: none;
+                }
+
+                &:focus,
+                &:hover {
+                    opacity: 1;
+                    &::placeholder {
+                        color: rgba(44, 44, 44, 1);
+                    }
+                }
+            }
+
+            &--img {
+                position: absolute;
+                left: 8px;
+                width: 18px;
+                height: 18px;
+                opacity: .7;
+                z-index: 1;
+                transform: translateY(-15%);
+                transition: all .3s;
+            }
+        }
+
+        &__buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            button {
+                font-family: "PT Sans", sans-serif;
+                padding: 6px 14px;
+                border-radius: 3px;
+                white-space: nowrap;
+                font-size: 1.4rem;
+                letter-spacing: 0.3px;
+            }
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__empty-block {
+        flex: 1 1 33%;
+    }
+}
+
+.settings__password__input {
+    display: block;
+    margin-bottom: 7%;
+    img {
+        transform: translateY(50%);
+    }
+    .validation-msg {
+        position: static;
+    }
+}
