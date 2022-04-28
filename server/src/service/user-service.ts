@@ -101,6 +101,9 @@ class UserService {
         return userInfo
     }
 
+
+    // ============== USER SETTINGS FUNCTIONS ==============
+
     async uploadAvatar(file: any, userId: string) {
         const user = await User.findById(userId)
         const avatarName: string = uuid.v4() + ".jpg"
@@ -159,6 +162,8 @@ class UserService {
 
         return { socialMedia: user.socialMedia }
     }
+
+
 }
 
 module.exports = new UserService
