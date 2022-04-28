@@ -2,7 +2,7 @@ import { IUser } from '../models/IUser'
 import { makeAutoObservable } from 'mobx'
 import AuthService from '../service/AuthService'
 import axios from 'axios'
-import { API_URL } from '../http'
+import $api, { API_URL } from '../http'
 import { AuthResponse } from '../models/response/AuthResponse'
 import { UserInfoResponse } from '../models/response/UserInfoResponse'
 import { ActiveSettingsLink } from '../models/ActiveLinks'
@@ -86,6 +86,15 @@ export default class Store {
             })
             return response
         } catch (e: any) {
+            console.log(e)
+        }
+    }
+
+    async updateSocialMedia(data: Object) {
+        try {
+            const response = await $api.post(`${API_URL}/updateSocialMedia`, data)
+            return response
+        } catch (e) {
             console.log(e)
         }
     }
