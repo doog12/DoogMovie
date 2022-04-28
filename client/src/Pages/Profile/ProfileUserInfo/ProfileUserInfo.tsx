@@ -40,8 +40,9 @@ const ProfileUserInfo = () => {
                 >
                     <img
                         src={`${SERVER_URL}/avatar/${user?.avatar || 'default-user.png'}`}
-                        className="non-draggable"
+                        className="non-draggable unselectable"
                         alt="avatar"
+                        draggable="false"
                     />
                 </div>
             </div>

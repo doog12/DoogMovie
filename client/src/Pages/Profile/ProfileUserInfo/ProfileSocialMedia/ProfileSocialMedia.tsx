@@ -68,13 +68,13 @@ const ProfileSocialMedia = ({socialMedias, email}: ProfileSocialMediaProps) => {
         <div className="profile-page__user__social-media">
 
             <a href={typeOfSocialMedia('email', email).link}>
-                <img src={typeOfSocialMedia('email', email).icon} className="profile-page__user__social-media__item" alt='email' />
+                <img src={typeOfSocialMedia('email', email).icon} className="profile-page__user__social-media__item unselectable non-draggable" alt='email' draggable="false" />
             </a>
 
             {
                 Object.entries(socialMedias).map(([key, value]: Array<string>, index: number) => (
                     <a href={typeOfSocialMedia(key, value).link} target='_blank' rel="noreferrer" key={`${value}_${index}`}>
-                        <img src={typeOfSocialMedia(key).icon} className="profile-page__user__social-media__item" alt={key} />
+                        <img src={typeOfSocialMedia(key).icon} className="profile-page__user__social-media__item unselectable non-draggable" alt={key} draggable="false" />
                     </a>
                 ))
             }
