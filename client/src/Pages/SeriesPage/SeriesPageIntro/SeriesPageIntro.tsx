@@ -98,30 +98,33 @@ function SeriesPageIntro({ details, type }: { details: any; type: string }) {
                                         </div>
                                     ))
                                     : ''}
-                                {details.authors.map((item: any, index: number) => (
-                                    <div
-                                        className="series-page__intro__content__info__item shield-item"
-                                        key={index}
-                                    >
-                                        {item.logo_path || item.image ? (
-                                            <div className="series-page__intro__content__info__item__img">
-                                                <img
-                                                    src={
-                                                        type === 'anime'
-                                                            ? `https://shikimori.one${item.image}`
-                                                            : `https://image.tmdb.org/t/p/w200${item.logo_path}`
-                                                    }
-                                                    alt={`${item.name}`}
-                                                    className="unselectable"
-                                                />
+                                {details.authors
+                                    // TODO: Отсортировать авторов на странице Серии
+                                    // .sort((a: any,b: any) => (a.logo_path || a.image) !== null ? -1 : 1 )
+                                    .map((item: any, index: number) => (
+                                        <div
+                                            className="series-page__intro__content__info__item shield-item"
+                                            key={index}
+                                        >
+                                            {item.logo_path || item.image ? (
+                                                <div className="series-page__intro__content__info__item__img">
+                                                    <img
+                                                        src={
+                                                            type === 'anime'
+                                                                ? `https://shikimori.one${item.image}`
+                                                                : `https://image.tmdb.org/t/p/w200${item.logo_path}`
+                                                        }
+                                                        alt={`${item.name}`}
+                                                        className="unselectable"
+                                                    />
+                                                </div>
+                                            ) : (
+                                                ''
+                                            )}
+                                            <div className="series-page__intro__content__info__item__author unselectable">
+                                                <p>{item.name}</p>
                                             </div>
-                                        ) : (
-                                            ''
-                                        )}
-                                        <div className="series-page__intro__content__info__item__author unselectable">
-                                            <p>{item.name}</p>
                                         </div>
-                                    </div>
                                 ))}
                             </div>
                         </div>
