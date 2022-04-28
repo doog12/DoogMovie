@@ -1,0 +1,1 @@
+export type ActiveSettingsLink = 'Профиль' | 'Соц. сети' | 'Внешний вид';

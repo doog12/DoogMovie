@@ -5,10 +5,13 @@ import axios from 'axios'
 import { API_URL } from '../http'
 import { AuthResponse } from '../models/response/AuthResponse'
 import { UserInfoResponse } from '../models/response/UserInfoResponse'
+import { ActiveSettingsLink } from '../models/ActiveLinks'
 
 export default class Store {
     user = {} as IUser
     isAuth: boolean = false
+
+    activeSettingsLink: ActiveSettingsLink = 'Профиль'
 
     constructor() {
         makeAutoObservable(this)
@@ -20,6 +23,10 @@ export default class Store {
 
     setUser(user: IUser) {
         this.user = user
+    }
+
+    setActiveSettingsLink(activeLink: ActiveSettingsLink) {
+        this.activeSettingsLink = activeLink
     }
 
     async login(email: string, password: string): Promise<number | undefined> {
@@ -72,7 +79,7 @@ export default class Store {
 
     async getUserInfo(userId: string | undefined) {
         try {
-            const response = await axios.get<UserInfoResponse>(`${API_URL}/get_user`, {
+            const response = await axios.get<UserInfoResponse>(`${API_URL}/getUser`, {
                 params: {
                     userId
                 }
